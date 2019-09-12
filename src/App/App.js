@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link, BrowserRouter } from 'react-router-dom';
