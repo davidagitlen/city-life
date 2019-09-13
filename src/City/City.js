@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './City.scss';
-import { fetchUrbanAreas, fetchCityData } from '../util/apiCalls';
+import { fetchUrbanAreas, fetchCityScores, fetchAdditionalData } from '../util/apiCalls';
 
 class City extends Component{
   constructor(){
@@ -16,9 +16,9 @@ class City extends Component{
     try {
       const urbanAreas = await fetchUrbanAreas();
       const urbanAreasNames = urbanAreas._links['ua:item'];
-      this.setState({cities: urbanAreasNames});
+      this.setState({cities: urbanAreasNames}, () => {console.log(urbanAreasNames)});
     } catch ({ message }) {
-      console.log(message);
+      this.setState({error : message}, () => {console.error(message)});
     }
   }
 
@@ -28,12 +28,55 @@ class City extends Component{
 
   handleSubmitCity = async (e) => {
     e.preventDefault();
+    this.getCityScores();
+    this.getAdditionalCityData();
+    // const citySnippet = this.state.city.toLowerCase().replace(/,|\./, '').replace(' ', '-');
+    // try {
+    //   const city = await fetchCityScores(`https://api.teleport.org/api/urban_areas/slug:${citySnippet}/`);
+    //   const cityScores = city.categories;
+    //   console.log(cityScores);
+    // } catch ({ message }) {
+    //   this.setState({error: message}, () => {console.error(message)});
+    // }
+  }
+
+  getCityScores = async () => {
+    console.log(this.state.city.toLowerCase())
+    const citySnippet = this.state.city.toLowerCase().replace(/,|\./g, '').replace(/\s/g, '-');
     try {
-      const city = await fetchCityData(`https://api.teleport.org/api/urban_areas/slug:${this.state.city.toLowerCase()}/`);
+      const city = await fetchCityScores(`https://api.teleport.org/api/urban_areas/slug:${citySnippet}/`);
       const cityScores = city.categories;
-      console.log(cityScores)
+      console.log(cityScores);
     } catch ({ message }) {
-      console.log(message)
+      this.setState({ error: message }, () => { console.error(message) });
+    }
+  }
+
+  getAdditionalCityData = async () => {
+    const originalName = this.state.city;
+    const cityName = this.formatCityName(this.state.city).replace(/,|\./, '')
+    try {
+      const city = await fetchAdditionalData(cityName, originalName);
+      console.log('in getAdditionalCityData', cityName, city)
+    } catch ({ message }) {
+      this.setState({ error: message}, () => {console.error(message)});
+    }
+  }
+
+  formatCityName = (name) => {
+    switch(name) {
+      case 'San Francisco Bay Area' :
+        return 'San Francisco';
+      case 'Portland, ME' :
+        return 'Portland';
+      case 'Portland, OR' :
+        return 'Portland';
+      case 'Birmingham, AL' :
+        return 'Birmingham';
+      case 'Minneapolis-Saint Paul' :
+        return 'Minneapolis';
+      default :
+        return name; 
     }
   }
   
@@ -50,8 +93,9 @@ class City extends Component{
             name='city'
             type='text' 
             value={this.state.city}
-            onChange={this.handleCitySelection}
             placeholder='Select a City'
+            autoComplete='off'
+            onChange={this.handleCitySelection}
             />
           <datalist id='city-selection'>
             {cityNames}
