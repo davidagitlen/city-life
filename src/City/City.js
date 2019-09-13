@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './City.scss';
-import { fetchUrbanAreas, fetchCityScores, fetchAdditionalData } from '../util/apiCalls';
+import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalData } from '../util/apiCalls';
 
 class City extends Component{
   constructor(){
@@ -29,15 +29,7 @@ class City extends Component{
   handleSubmitCity = async (e) => {
     e.preventDefault();
     this.getCityScores();
-    this.getAdditionalCityData();
-    // const citySnippet = this.state.city.toLowerCase().replace(/,|\./, '').replace(' ', '-');
-    // try {
-    //   const city = await fetchCityScores(`https://api.teleport.org/api/urban_areas/slug:${citySnippet}/`);
-    //   const cityScores = city.categories;
-    //   console.log(cityScores);
-    // } catch ({ message }) {
-    //   this.setState({error: message}, () => {console.error(message)});
-    // }
+    this.handleAdditionalData();
   }
 
   getCityScores = async () => {
@@ -56,8 +48,8 @@ class City extends Component{
     const originalName = this.state.city;
     const cityName = this.formatCityName(this.state.city).replace(/,|\./, '')
     try {
-      const city = await fetchAdditionalData(cityName, originalName);
-      console.log('in getAdditionalCityData', cityName, city)
+      const city = await findAdditionalData(cityName, originalName);
+      return city;
     } catch ({ message }) {
       this.setState({ error: message}, () => {console.error(message)});
     }
@@ -79,6 +71,28 @@ class City extends Component{
         return name; 
     }
   }
+
+  handleAdditionalData = async () => {
+    const href = await this.getAdditionalCityData();
+    try {
+      const additionalData = await fetchAdditionalData(href);
+      console.log('additionalData return', additionalData)
+      const formattedData = {
+        population: additionalData.population,
+        latitude: additionalData.location.latlon.latitude,
+        longitude: additionalData.location.latlon.longitude,
+        fullName: additionalData.full_name,
+        timeZone: additionalData._links['city:timezone'].name,
+        country: additionalData._links['city:country'].name
+      }
+      console.log(formattedData)
+      return formattedData;
+    } catch ({ message }) {
+      this.setState({ error : message});
+    }
+  }
+
+
   
   render() {
     console.log(this.props)

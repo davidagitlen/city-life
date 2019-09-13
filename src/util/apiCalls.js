@@ -18,7 +18,7 @@ export const fetchCityScores = async (partialUrl) => {
   return cityData;
 }
 
-export const fetchAdditionalData = async (city, originalName) => {
+export const findAdditionalData = async (city, originalName) => {
   const url = `https://api.teleport.org/api/cities/?search=${city}`;
   const response = await fetch(url);
   if (!response.ok) {
@@ -33,4 +33,14 @@ export const fetchAdditionalData = async (city, originalName) => {
     default :
       return additionalCityData._embedded['city:search-results'][0]._links['city:item'].href;
   }
+}
+
+export const fetchAdditionalData = async (href) => {
+  const url = `${href}`
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('There was a problem parsing that city\'s additional data!')
+  }
+  const data = await response.json();
+  return data;
 }
