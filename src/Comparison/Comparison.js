@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 
 const Comparison = (props) => {
-  console.log(props)
+  console.log('in comparison', props)
   return(
     <div className='Comparison'>
       <img src='' alt=''/>

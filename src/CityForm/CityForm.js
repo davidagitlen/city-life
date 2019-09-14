@@ -117,7 +117,7 @@ class CityForm extends Component{
       <div className='CityForm'>
         <form>
           <p>{cityOrdinal} City</p>
-          <label for='city'>City Name</label>
+          <label htmlFor='city'>City Name</label>
           <input 
             list='city-selection'
             name='city'
