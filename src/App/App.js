@@ -18,7 +18,7 @@ export const App = (props) => {
       <div className='App'>
         <header className='App-header'>
           <div className='site-name'>
-            <h1>CityLife</h1>
+            <h1>City<span>Life</span></h1>
           </div>
           <div className='nav-links'>
             <NavLink to='/' className='nav'>Compare Cities</NavLink>

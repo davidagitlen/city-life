@@ -6,15 +6,15 @@ export const City = (props) => {
   const { ordinal } = props;
   const { population, latitude, longitude, fullName, timeZone } = props.cityInfo[ordinal].details;
   const { web } = props.cityInfo[ordinal].images.images;
-  // console.log(props.cityInfo[ordinal].images.images)
-  // console.log(mobile)
 
   return(
     <div className='City'>
-    <img src={web} alt=''/>
+      <div>
+        <img id='circle' src={web} alt=''/>
+      </div>
     <p>{fullName}</p>
-    <p><span>Population : </span>{population}</p>
-    <p><span>Time Zone : </span>{timeZone}</p>
+    {/* <p><span>Population : </span>{population}</p>
+    <p><span>Time Zone : </span>{timeZone}</p> */}
     </div>
   )
 }

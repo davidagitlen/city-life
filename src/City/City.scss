@@ -1,0 +1,29 @@
+.City {
+  position: relative;
+  background: ghostwhite;
+  height: 350px;
+  width: 350px;
+
+  & div{
+    position: relative;
+    overflow: hidden;
+  }
+
+  & img {
+    height: 200px;
+    margin: 15px 0px 15px 0px;
+    position: relative;
+    max-width: 100%;
+
+    &#circle {
+      -webkit-clip-path: circle(75px at 50% 50%);
+      clip-path: circle(100px at 50% 50%);
+    }
+
+  }
+
+  & p {
+    overflow: wrap;
+  }
+
+}
