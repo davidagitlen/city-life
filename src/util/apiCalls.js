@@ -18,6 +18,16 @@ export const fetchCityScores = async (partialUrl) => {
   return cityData;
 }
 
+export const fetchCityImages = async (partialUrl) => {
+  const url = `${partialUrl}images`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('There was a problem retrieving that city\'s images!');
+  }
+  const cityImages = await response.json();
+  return cityImages;
+}
+
 export const findAdditionalData = async (city, originalName) => {
   const url = `https://api.teleport.org/api/cities/?search=${city}`;
   const response = await fetch(url);
