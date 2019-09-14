@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import citySkyline from '../images/city-skyline.svg';
 import CityForm from '../CityForm/CityForm';
 import City from '../City/City';
 import Comparison from '../Comparison/Comparison';
@@ -18,6 +19,7 @@ export const App = (props) => {
       <div className='App'>
         <header className='App-header'>
           <div className='site-name'>
+            <img src={citySkyline} alt='' />
             <h1>City<span>Life</span></h1>
           </div>
           <div className='nav-links'>
@@ -30,15 +32,17 @@ export const App = (props) => {
         <Route exact path='/' render={() => {
           return(
             <>
-              <div className='city-left'>
-                <CityForm ordinal='one' />
-                {(cityOne || null) && <City ordinal='one' />}
+              <div className='forms'>
+                <div className='city-one'>
+                  <CityForm ordinal='one' />
+                  {(cityOne || null) && <City ordinal='one' />}
+                </div>
+                <div className='city-two'>
+                  <CityForm ordinal='two' />
+                  {(cityTwo || null) && <City ordinal='two' />}
+                </div>
               </div>
               <Comparison />
-              <div className='city-right'>
-                <CityForm ordinal='two' />
-                {(cityTwo || null) && <City ordinal='two' />}
-              </div>
             </>
           )
         }} />

@@ -109,14 +109,19 @@ class CityForm extends Component{
   }
 
   render() {
+    const ordinal = this.props.ordinal;
+    const cityOrdinal = ordinal === 'one' ? 'First' : 'Second';
     const cities = this.state.cities;
     const cityNames = cities.length ? cities.map(city => <option key={city.name} value={city.name} />) : null;
     return(
       <div className='CityForm'>
         <form>
+          <p>{cityOrdinal} City</p>
+          <label for='city'>City Name</label>
           <input 
             list='city-selection'
             name='city'
+            id='city'
             type='text' 
             value={this.state.city}
             placeholder='Select a City'
