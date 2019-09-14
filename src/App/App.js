@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.scss';
 import CityForm from '../CityForm/CityForm';
 import City from '../City/City';
@@ -12,15 +12,19 @@ import { NavLink, Route } from 'react-router-dom';
 export const App = (props) => {
     console.log('in app', props)
     const { cityInfo } = props;
-    const cityOne = cityInfo.one.scores.length;
-    const cityTwo = cityInfo.two.scores.length;
+    const cityOne = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
+    const cityTwo = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>CityLife</h1>
-          <NavLink to='/' className='nav'>Compare Cities</NavLink>
-          <NavLink to='/past-comparisons'>History</NavLink>
-          <NavLink to='/world-map'>Map</NavLink>
+      <div className='App'>
+        <header className='App-header'>
+          <div className='site-name'>
+            <h1>CityLife</h1>
+          </div>
+          <div className='nav-links'>
+            <NavLink to='/' className='nav'>Compare Cities</NavLink>
+            <NavLink to='/past-comparisons'>History</NavLink>
+            <NavLink to='/world-map'>Map</NavLink>
+          </div>
         </header>
         <main>
         <Route exact path='/' render={() => {
@@ -28,17 +32,17 @@ export const App = (props) => {
             <>
               <div className='city-left'>
                 <CityForm ordinal='one' />
+                {(cityOne || null) && <City ordinal='one' />}
               </div>
               <Comparison />
               <div className='city-right'>
                 <CityForm ordinal='two' />
+                {(cityTwo || null) && <City ordinal='two' />}
               </div>
             </>
           )
         }} />
         </main>
-        {(cityOne || null) && <div>Hello One!</div>}
-        {(cityTwo || null) && <div>Hello Two!</div>}
         {/* <Route exact path='/past-comparisons' render={() => {
           return(
             <main>

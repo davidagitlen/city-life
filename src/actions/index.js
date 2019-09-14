@@ -14,4 +14,5 @@ export const setCityImages = (ordinal, images) => ({
   type: 'SET_CITY_IMAGES',
   ordinal,
   images
-})
+});
+

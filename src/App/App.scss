@@ -5,8 +5,9 @@
 .App-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
   width: 100%;
   background-color: ghostwhite;
 }

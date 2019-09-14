@@ -4,7 +4,7 @@ import { setCityScores, setCityDetails, setCityImages } from '../actions';
 import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalData, fetchCityImages } from '../util/apiCalls';
 import { connect } from 'react-redux';
 
-class City extends Component{
+class CityForm extends Component{
   constructor(){
     super();
     this.state = {
@@ -112,7 +112,7 @@ class City extends Component{
     const cities = this.state.cities;
     const cityNames = cities.length ? cities.map(city => <option key={city.name} value={city.name} />) : null;
     return(
-      <div>
+      <div className='CityForm'>
         <form>
           <input 
             list='city-selection'
@@ -126,7 +126,9 @@ class City extends Component{
           <datalist id='city-selection'>
             {cityNames}
           </datalist>
-          <button type='submit' disabled={!this.state.city} onClick={this.handleSubmitCity}></button>
+          <button type='submit' disabled={!this.state.city} onClick={this.handleSubmitCity}>
+            Select City
+          </button>
         </form>
       </div>
     )
@@ -143,4 +145,4 @@ export const mapDispatchToProps = dispatch => ({
   setCityImages: (ordinal, images) => dispatch(setCityImages(ordinal, images))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(City);
+export default connect(mapStateToProps, mapDispatchToProps)(CityForm);
