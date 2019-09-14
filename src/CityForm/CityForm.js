@@ -126,7 +126,7 @@ class City extends Component{
           <datalist id='city-selection'>
             {cityNames}
           </datalist>
-          <button type='submit' onClick={this.handleSubmitCity}></button>
+          <button type='submit' disabled={!this.state.city} onClick={this.handleSubmitCity}></button>
         </form>
       </div>
     )

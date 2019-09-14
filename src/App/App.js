@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import './App.scss';
-import City from '../CityForm/CityForm';
+import CityForm from '../CityForm/CityForm';
+import City from '../City/City';
 import Comparison from '../Comparison/Comparison';
 // import Details from '../Details/Details';
-// import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
 import { NavLink, Route } from 'react-router-dom';
 
 
-class App extends Component{
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //   }
-  // };
-
-  render() {
+export const App = (props) => {
+    console.log('in app', props)
+    const { cityInfo } = props;
+    const cityOne = cityInfo.one.scores.length;
+    const cityTwo = cityInfo.two.scores.length;
     return (
       <div className="App">
         <header className="App-header">
@@ -29,16 +27,18 @@ class App extends Component{
           return(
             <>
               <div className='city-left'>
-                <City ordinal='one' />
+                <CityForm ordinal='one' />
               </div>
               <Comparison />
               <div className='city-right'>
-                <City ordinal='two' />
+                <CityForm ordinal='two' />
               </div>
             </>
           )
         }} />
         </main>
+        {(cityOne || null) && <div>Hello One!</div>}
+        {(cityTwo || null) && <div>Hello Two!</div>}
         {/* <Route exact path='/past-comparisons' render={() => {
           return(
             <main>
@@ -50,7 +50,10 @@ class App extends Component{
         }} /> */}
       </div>
     );
-  }
 }
 
-export default App;
+export const mapStateToProps = state => ({
+  cityInfo: state.cityInfo
+})
+
+export default connect(mapStateToProps)(App);
