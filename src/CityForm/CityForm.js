@@ -5,7 +5,7 @@ import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalDa
 import { formatCityName, formatAdditionalCityData } from '../util/dataCleaner';
 import { connect } from 'react-redux';
 
-class CityForm extends Component{
+export class CityForm extends Component{
   constructor(){
     super();
     this.state = {
@@ -21,7 +21,7 @@ class CityForm extends Component{
       const urbanAreasNames = urbanAreas._links['ua:item'];
       this.setState({cities: urbanAreasNames});
     } catch ({ message }) {
-      this.setState({error : message}, () => {console.error(message)});
+      this.setState({error : message});
     }
   }
 
@@ -43,7 +43,7 @@ class CityForm extends Component{
       const cityScores = city.categories;
       this.props.setCityScores(this.props.ordinal, cityScores);
     } catch ({ message }) {
-      this.setState({ error: message }, () => { console.error(message) });
+      this.setState({ error: message });
     }
   }
 
@@ -57,7 +57,7 @@ class CityForm extends Component{
       };
       this.props.setCityImages(this.props.ordinal, cityImages)
     } catch ({ message }) {
-      this.setState({ error: message}, () => { console.error(message)});
+      this.setState({ error: message});
     } 
   }
 
@@ -69,7 +69,7 @@ class CityForm extends Component{
       const city = await findAdditionalData(cityName, originalName);
       return city;
     } catch ({ message }) {
-      this.setState({ error: message}, () => {console.error(message)});
+      this.setState({ error: message});
     }
   }
 

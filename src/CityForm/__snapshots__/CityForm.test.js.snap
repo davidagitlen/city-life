@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CityForm should match the snapshot with data passed in correctly 1`] = `
+<div
+  className="CityForm"
+>
+  <form>
+    <p>
+      First
+       City
+    </p>
+    <label
+      htmlFor="city-one"
+    >
+      City Name
+    </label>
+    <input
+      autoComplete="off"
+      id="city-one"
+      list="city-selection"
+      name="city"
+      onChange={[Function]}
+      placeholder="Select a City to Compare"
+      type="text"
+      value=""
+    />
+    <datalist
+      id="city-selection"
+    />
+    <button
+      disabled={true}
+      onClick={[Function]}
+      type="submit"
+    >
+      Select City
+    </button>
+  </form>
+</div>
+`;
