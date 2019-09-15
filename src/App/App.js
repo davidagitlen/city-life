@@ -4,7 +4,7 @@ import citySkyline from '../images/city-skyline.svg';
 import CityForm from '../CityForm/CityForm';
 import City from '../City/City';
 import Comparison from '../Comparison/Comparison';
-// import Details from '../Details/Details';
+import Details from '../Details/Details';
 import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 import { NavLink, Route } from 'react-router-dom';
@@ -46,6 +46,14 @@ export const App = (props) => {
             </>
           )
         }} />
+        <Route path='/details/:name' render={({ match }) => {
+          const { name } =match.params;
+          const awaitData = cityOneReady || cityTwoReady; 
+          const cityCheck = awaitData ?cityInfo.one.details.fullName.includes(name) : null;
+          const cityProps = cityCheck ? cityInfo.one : cityInfo.two;  
+          return <Details props={cityProps}/>
+        }}
+        />
         </main>
         {/* <Route exact path='/past-comparisons' render={() => {
           return(
