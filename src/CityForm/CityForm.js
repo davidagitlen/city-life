@@ -120,14 +120,14 @@ class CityForm extends Component{
       <div className='CityForm'>
         <form>
           <p>{cityOrdinal} City</p>
-          <label htmlFor='city'>City Name</label>
+          <label htmlFor={`city-${ordinal}`}>City Name</label>
           <input 
             list='city-selection'
             name='city'
-            id='city'
+            id={`city-${ordinal}`}
             type='text' 
             value={this.state.city}
-            placeholder='Select a City'
+            placeholder='Select a City to Compare'
             autoComplete='off'
             onChange={this.handleCitySelection}
             />

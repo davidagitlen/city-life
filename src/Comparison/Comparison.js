@@ -26,11 +26,11 @@ const Comparison = (props) => {
 
   return(
     <div className='Comparison'>
-      {!cityOneReady || !cityTwoReady && <p>Select Two Cities to Compare from the Form on the Left!</p>}
-      {cityOneReady && cityTwoReady && <ComparisonChart data={economicData} />}
-      {cityOneReady && cityTwoReady && <ComparisonChart data={healthAndSafetyData} />}
-      {cityOneReady && cityTwoReady && <ComparisonChart data={culturalData} />}
-      {cityOneReady && cityTwoReady && <ComparisonChart data={infrastructureData} />}
+      {(!cityOneReady || !cityTwoReady) && <p>Select Two Cities to Compare from the Form on the Left</p>}
+      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={economicData} />}
+      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={healthAndSafetyData} />}
+      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={culturalData} />}
+      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={infrastructureData} />}
     </div>
   )
 }
