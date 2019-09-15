@@ -76,8 +76,6 @@ describe('CityForm', () => {
       return Promise.resolve({});
     });
 
-
-
     wrapper = shallow(
       <CityForm 
         cityInfo={mockCityInfo}
@@ -90,4 +88,49 @@ describe('CityForm', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-})
+  describe('handleCitySelection', () => {
+
+    it('should update city property of state with input value', () => {
+      const mockEvent = {
+        target: {
+          name: 'city',
+          value: 'Uncasville'
+        }
+      };
+
+      const expected = {
+        city: 'Uncasville',
+        cities: [],
+        error: "Cannot read property 'ua:item' of undefined"
+      };
+
+      wrapper.instance().handleCitySelection(mockEvent);
+
+      expect(wrapper.state()).toEqual(expected);
+    });
+  });
+
+  describe('handleSubmitCity', () => {
+
+    it('should invoke getCityScores, getCityImages, and handleAdditionalData', async () => {
+
+      const mockEvent = {
+        preventDefault: jest.fn()
+      };
+      
+      wrapper.instance().getCityScores = jest.fn();
+      wrapper.instance().getCityImages = jest.fn();
+      wrapper.instance().handleAdditionalData = jest.fn();
+      wrapper.instance().forceUpdate();
+
+      await wrapper.instance().handleSubmitCity(mockEvent);
+
+      expect(wrapper.instance().getCityScores).toHaveBeenCalled();
+      expect(wrapper.instance().getCityImages).toHaveBeenCalled();
+      expect(wrapper.instance().handleAdditionalData).toHaveBeenCalled();
+
+    });
+  });
+
+  
+});

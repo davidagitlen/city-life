@@ -63,7 +63,6 @@ export class CityForm extends Component{
 
   getAdditionalCityData = async () => {
     const originalName = this.state.city;
-    // const cityName = this.formatCityName(this.state.city).replace(/,|\./, '')
     const cityName = formatCityName(originalName).replace(/,|\./, '');
     try {
       const city = await findAdditionalData(cityName, originalName);
@@ -73,38 +72,11 @@ export class CityForm extends Component{
     }
   }
 
-  // formatCityName = (name) => {
-  //   switch(name) {
-  //     case 'San Francisco Bay Area' :
-  //       return 'San Francisco';
-  //     case 'Portland, ME' :
-  //       return 'Portland';
-  //     case 'Portland, OR' :
-  //       return 'Portland';
-  //     case 'Birmingham, AL' :
-  //       return 'Birmingham';
-  //     case 'Minneapolis-Saint Paul' :
-  //       return 'Minneapolis';
-  //     default :
-  //       return name; 
-  //   }
-  // }
-
   handleAdditionalData = async () => {
     const href = await this.getAdditionalCityData();
     try {
       const additionalData = await fetchAdditionalData(href);
-      // console.log('additionalData return', additionalData)
-      // const formattedData = {
-      //   population: additionalData.population.toLocaleString(),
-      //   latitude: additionalData.location.latlon.latitude,
-      //   longitude: additionalData.location.latlon.longitude,
-      //   fullName: additionalData.full_name,
-      //   timeZone: additionalData._links['city:timezone'].name,
-      //   country: additionalData._links['city:country'].name
-      // }
       const formattedData = formatAdditionalCityData(additionalData);
-      // console.log(formattedData)
       this.props.setCityDetails(this.props.ordinal, formattedData);
     } catch ({ message }) {
       this.setState({ error : message});
