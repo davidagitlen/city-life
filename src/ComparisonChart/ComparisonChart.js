@@ -4,10 +4,6 @@ import './ComparisonChart.scss';
 
 class ComparisonChart extends Component{
   chartRef = React.createRef();
-  // constructor(){
-  //   super();
-
-  // }
 
   componentDidMount() {
     const currentChartRef = this.chartRef.current.getContext('2d');
@@ -84,10 +80,14 @@ class ComparisonChart extends Component{
   }
 
   render() {
-    console.log(this.props)
+    console.log('in comparisonChart', this.props)
     return(
-      <>
-      </>
+        <div className='ComparisonChart'>
+          <canvas
+            id="myChart"
+            ref={this.chartRef}
+          />
+        </div>
     )
   }
 
