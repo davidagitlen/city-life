@@ -50,7 +50,7 @@ export const App = (props) => {
           const { name } =match.params;
           const awaitData = cityOneReady || cityTwoReady; 
           const cityCheck = awaitData ?cityInfo.one.details.fullName.includes(name) : null;
-          const cityProps = cityCheck ? cityInfo.one : cityInfo.two;  
+          const cityProps = cityCheck ? cityInfo.one : cityInfo.two;
           return <Details props={cityProps}/>
         }}
         />
