@@ -2,7 +2,8 @@
   display: grid;
   grid-template: 1fr 1fr/1fr 1fr;
   background-color: ghostwhite;
-  height: 100vh;
+  min-height: fit-content;
+  // max-height: fit-content;
   width: 100%;
   border: 1px solid green;
 }

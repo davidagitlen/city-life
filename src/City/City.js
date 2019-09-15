@@ -13,8 +13,6 @@ export const City = (props) => {
         <img id='circle' src={web} alt=''/>
       </div>
     <p>{fullName}</p>
-    {/* <p><span>Population : </span>{population}</p>
-    <p><span>Time Zone : </span>{timeZone}</p> */}
     </div>
   )
 }
