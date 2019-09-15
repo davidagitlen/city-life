@@ -11,14 +11,16 @@ const Comparison = (props) => {
   const { cityInfo } = props;
   const cityOneReady = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
   const cityTwoReady = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
+  const cityOneName = cityOneReady ? cityInfo.one.details.fullName.split(',')[0] : null;
+  const cityTwoName = cityTwoReady ? cityInfo.two.details.fullName.split(',')[0] : null;
 
   const formatChartData = (arrayOne, arrayTwo, indexes) => ({
     cityOneData: indexes.map(index => arrayOne[index]),
     cityTwoData: indexes.map(index => arrayTwo[index]),
   });
 
-  const cityOneScores = props.cityInfo.one.scores;
-  const cityTwoScores = props.cityInfo.two.scores; 
+  const cityOneScores = cityInfo.one.scores;
+  const cityTwoScores = cityInfo.two.scores; 
   const economicData = formatChartData(cityOneScores, cityTwoScores, [0,1,2,3,6,11,12]);
   const healthAndSafetyData = formatChartData(cityOneScores, cityTwoScores, [7,8,10,16]);
   const culturalData = formatChartData(cityOneScores, cityTwoScores, [9,14,15]);
@@ -27,10 +29,10 @@ const Comparison = (props) => {
   return(
     <div className='Comparison'>
       {(!cityOneReady || !cityTwoReady) && <p>Select Two Cities to Compare from the Form on the Left</p>}
-      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={economicData} />}
-      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={healthAndSafetyData} />}
-      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={culturalData} />}
-      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={infrastructureData} />}
+      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={economicData} cityOneName={cityOneName} cityTwoName={cityTwoName}/>}
+      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={healthAndSafetyData} cityOneName={cityOneName} cityTwoName={cityTwoName}/>}
+      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={culturalData} cityOneName={cityOneName} cityTwoName={cityTwoName}/>}
+      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={infrastructureData} cityOneName={cityOneName} cityTwoName={cityTwoName}/>}
     </div>
   )
 }

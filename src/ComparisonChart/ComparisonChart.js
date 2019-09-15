@@ -16,30 +16,33 @@ class ComparisonChart extends Component{
   }
 
   createChart = () => {
+    const { data, cityOneName, cityTwoName } = this.props;
+    // const { cityOneName } = this.props;
+    // const { cityTwoname } = this.props;
+
     const currentChartRef = this.chartRef.current.getContext('2d');
 
     myLineChart = new Chart(currentChartRef, {
       type: 'line',
       data: {
-        labels: this.props.data.cityOneData.map(datum => datum.name),
+        labels: data.cityOneData.map(datum => datum.name),
         datasets: [
           {
-            label: 'Testing Chart City One',
-            data: this.props.data.cityOneData.map(datum => datum.score_out_of_10.toFixed(2)),
+            label: cityOneName,
+            data: data.cityOneData.map(datum => datum.score_out_of_10.toFixed(2)),
             fill: false,
-            backgroundColor: this.props.data.cityOneData.map(datum => 'rgba(0, 0, 255)'),
-            borderColor: this.props.data.cityOneData.map(datum => 'rgba(255, 0, 0)'),
+            backgroundColor: data.cityOneData.map(datum => 'rgba(0, 0, 255)'),
+            borderColor: data.cityOneData.map(datum => 'rgba(255, 0, 0)'),
             borderWidth: 1,
             yAxisId: 'Testing One'
           },
           {
             type: 'line',
-            label: 'Testing Chart City Two',
-            data: this.props.data.cityTwoData.map(datum => datum.score_out_of_10.toFixed(2)),
+            label: cityTwoName,
+            data: data.cityTwoData.map(datum => datum.score_out_of_10.toFixed(2)),
             fill: false,
-            backgroundColor: this.props.data.cityTwoData.map(datum => 'rgba(0, 255, 0)'),
-            borderColor: this.props.data.cityTwoData.map(datum => 'rgba(0, 255, 0)'),
-            yAxisID: 'Testing Two',
+            backgroundColor: data.cityTwoData.map(datum => 'rgba(0, 255, 0)'),
+            borderColor: data.cityTwoData.map(datum => 'rgba(0, 255, 0)'),
             borderWidth: 1.5
           },
         ]
@@ -57,18 +60,7 @@ class ComparisonChart extends Component{
               display: true,
               labelString: 'One'
             }
-          },
-          {
-            id: 'Testing Two',
-            position: 'right',
-            ticks: {
-              beginAtZero: true,
-            },
-            scaleLabel: {
-              display: true,
-              labelString: 'Two'
-            }
-          },
+          }
           ]
         }
       }
