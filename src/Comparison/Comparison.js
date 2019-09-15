@@ -8,6 +8,9 @@ import { connect } from 'react-redux';
 
 const Comparison = (props) => {
   console.log('in comparison', props)
+  const { cityInfo } = props;
+  const cityOneReady = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
+  const cityTwoReady = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
 
   const formatChartData = (arrayOne, arrayTwo, indexes) => ({
     cityOneData: indexes.map(index => arrayOne[index]),
@@ -23,10 +26,11 @@ const Comparison = (props) => {
 
   return(
     <div className='Comparison'>
-      <ComparisonChart data={economicData} />
-      <ComparisonChart data={healthAndSafetyData} />
-      <ComparisonChart data={culturalData} />
-      <ComparisonChart data={infrastructureData} />
+      {!cityOneReady || !cityTwoReady && <p>Select Two Cities to Compare from the Form on the Left!</p>}
+      {cityOneReady && cityTwoReady && <ComparisonChart data={economicData} />}
+      {cityOneReady && cityTwoReady && <ComparisonChart data={healthAndSafetyData} />}
+      {cityOneReady && cityTwoReady && <ComparisonChart data={culturalData} />}
+      {cityOneReady && cityTwoReady && <ComparisonChart data={infrastructureData} />}
     </div>
   )
 }

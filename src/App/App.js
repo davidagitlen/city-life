@@ -13,8 +13,8 @@ import { NavLink, Route } from 'react-router-dom';
 export const App = (props) => {
     console.log('in app', props)
     const { cityInfo } = props;
-    const cityOne = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
-    const cityTwo = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
+    const cityOneReady = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
+    const cityTwoReady = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
     return (
       <div className='App'>
         <header className='App-header'>
@@ -35,11 +35,11 @@ export const App = (props) => {
               <div className='forms'>
                 <div className='city-one'>
                   <CityForm ordinal='one' />
-                  {(cityOne || null) && <City ordinal='one' />}
+                  {(cityOneReady || null) && <City ordinal='one' />}
                 </div>
                 <div className='city-two'>
                   <CityForm ordinal='two' />
-                  {(cityTwo || null) && <City ordinal='two' />}
+                  {(cityTwoReady || null) && <City ordinal='two' />}
                 </div>
               </div>
               <Comparison />
