@@ -5,11 +5,6 @@ import { shallow } from 'enzyme';
 describe('ComparisonChart', () => {
 
   let wrapper, mockData;
-  // global.createRef() = jest.fn().mockImplementation(() => ({
-  //   current : {
-  //     getContext : jest.fn();
-  //   }
-  // }));
 
   beforeEach(() => {
     mockData = {

@@ -35,6 +35,6 @@ describe('Details', () => {
 
   it('should match the snapshot with data passed in correctly', () => {
     expect(wrapper).toMatchSnapshot();
-  })
+  });
 
 });

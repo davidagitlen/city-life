@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`City should match the snapshot with data passed in correctly 1`] = `
+<div
+  className="City"
+>
+  <Link
+    to="details/Dorvord"
+  >
+    <div>
+      <img
+        alt=""
+        id="circle"
+        src="http://blah.com"
+      />
+    </div>
+    <p>
+      Dorvord, Gordletan
+    </p>
+  </Link>
+</div>
+`;

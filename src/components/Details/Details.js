@@ -3,7 +3,6 @@ import './Details.scss';
 import { Link } from 'react-router-dom';
 
 const Details = (props) => {
-  console.log('in details', props);
   const {latitude, longitude, population, fullName, timeZone} = props.cityData.details;
   const {attribution, images} = props.cityData.images;
   const cleanTimeZone = timeZone.replace(/_/g, ' ');

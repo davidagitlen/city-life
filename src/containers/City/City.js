@@ -8,8 +8,6 @@ export const City = (props) => {
   const { fullName } = props.cityInfo[ordinal].details;
   const { web } = props.cityInfo[ordinal].images.images;
   const linkName = fullName ? fullName.split(',')[0] : null;
-  // console.log(linkName);
-  console.log('in city', props)
   return(
     <div className='City'>
       <Link to={`details/${linkName}`} >

@@ -11,7 +11,6 @@ import { NavLink, Route } from 'react-router-dom';
 
 
 export const App = (props) => {
-    console.log('in app', 'blahb lahb ab', props)
     const { cityInfo } = props;
     const cityOneReady = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
     const cityTwoReady = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
@@ -19,7 +18,6 @@ export const App = (props) => {
       <div className='App'>
         <header className='App-header'>
           <div className='site-name'>
-            {/* <img src={citySkyline} alt='' /> */}
             <h1>City<span>Life</span></h1>
           </div>
           <div className='nav-links'>
@@ -57,15 +55,6 @@ export const App = (props) => {
         }}
         />
         </main>
-        {/* <Route exact path='/past-comparisons' render={() => {
-          return(
-            <main>
-              <div>
-                <Details />
-              </div>
-            </main>
-          )
-        }} /> */}
       </div>
     );
 }
