@@ -1,6 +1,7 @@
 import { 
   formatCityName, 
-  formatAdditionalCityData
+  formatAdditionalCityData,
+  formatChartData
 } from './dataCleaner';
 
 describe('dataCleaner', () => {
@@ -69,4 +70,22 @@ describe('dataCleaner', () => {
 
     });
   });
-});
+
+  describe('formatChartData', () =>{
+
+    it('should return an object with properly properly selected indices of the first two arrays passed to it as arguments, based on the array of indices passed as its last argument', () => {
+
+      const mockFirstArray = [{name: 'Housing', score_out_of_10: 10}, {name: 'Commute', score_out_of_10: 10}, {name: 'Education', score_out_of_10: 10}];
+      const mockSecondArray = [{ name: 'Housing', score_out_of_10: 5 }, { name: 'Commute', score_out_of_10: 5 }, { name: 'Education', score_out_of_10: 5 }];
+
+      const expected = {
+          cityOneData: [{ name: 'Housing', score_out_of_10: 10 }, { name: 'Education', score_out_of_10: 10 }],
+          cityTwoData: [{ name: 'Housing', score_out_of_10: 5 }, { name: 'Education', score_out_of_10: 5 }]
+        };
+
+      expect(formatChartData(mockFirstArray, mockSecondArray, [0, 2])).toEqual(expected);
+
+      });
+    });
+
+  });

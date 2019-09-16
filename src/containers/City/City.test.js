@@ -94,5 +94,4 @@ describe('City', () => {
       expect(mappedProps).toEqual(expected);
     });
   });
- 
 });

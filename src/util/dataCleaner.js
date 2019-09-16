@@ -23,3 +23,8 @@ export const formatAdditionalCityData = (data) => ({
   timeZone: data._links['city:timezone'].name,
   country: data._links['city:country'].name
 });
+
+export const formatChartData = (arrayOne, arrayTwo, indexes) => ({
+  cityOneData: indexes.map(index => arrayOne[index]),
+  cityTwoData: indexes.map(index => arrayTwo[index]),
+});
