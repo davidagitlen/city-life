@@ -148,7 +148,7 @@ describe('apiCalls', () => {
         });
       });
 
-      expect(fetchCityImages(`https://api.teleport.org/api/urban_areas/slug:Denver/`)).rejects.toEqual('There was a problem retrieving that city\'s images!');
+      expect(fetchCityImages(`https://api.teleport.org/api/urban_areas/slug:Denver/`)).rejects.toEqual(Error('There was a problem retrieving that city\'s images!'));
     });
   });
 
@@ -217,7 +217,7 @@ describe('apiCalls', () => {
         });
       });
 
-      expect(findAdditionalData('Denver')).rejects.toEqual('There was a problem retrieving that city\'s additional data!');
+      expect(findAdditionalData('Denver')).rejects.toEqual(Error('There was a problem retrieving that city\'s additional data!'));
     });
   });
 
@@ -269,7 +269,7 @@ describe('apiCalls', () => {
         });
       });
 
-      expect(fetchAdditionalData('http://blah.com/blah')).rejects.toEqual('There was a problem parsing that city\'s additional data!');
+      expect(fetchAdditionalData('http://blah.com/blah')).rejects.toEqual(Error('There was a problem parsing that city\'s additional data!'));
     });
   });
 });

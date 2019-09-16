@@ -90,7 +90,7 @@ describe('CityForm', () => {
 
   describe('handleCitySelection', () => {
 
-    it.only('should update city property of state with input value', () => {
+    it('should update city property of state with input value', () => {
       const mockEvent = {
         target: {
           name: 'city',
@@ -110,7 +110,6 @@ describe('CityForm', () => {
           ordinal='one'
         />, {disableLifecycleMethods: true}
       )
-
 
       wrapper.instance().handleCitySelection(mockEvent);
 

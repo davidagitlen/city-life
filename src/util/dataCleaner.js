@@ -23,4 +23,3 @@ export const formatAdditionalCityData = (data) => ({
   timeZone: data._links['city:timezone'].name,
   country: data._links['city:country'].name
 });
-
