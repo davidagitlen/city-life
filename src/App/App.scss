@@ -8,8 +8,7 @@
   justify-content: space-between;
   height: 100px;
   width: 100%;
-  background-color: ghostwhite;
-  border: 1px solid blue;
+  background-color: #2E2EC9;
 
   & div {
     display: flex;
@@ -21,12 +20,14 @@
   }
 
   & h1 {
-    font-size: 34px;
-    font-weight: bold;
+    color: snow;
+    font-size: 46px;
+    // font-weight: bold;
     position: relative;
 
     & span {
-      color: blue;
+      font-weight: bold;
+      color: snow;
       z-index: 1;
     }
   }
@@ -42,7 +43,7 @@
 main {
   display: flex;
   flex-direction: row;
-  background-color: blue;
+  // background-color: ghostwhite;
   height: 100vh;
   width: 100%;
 }
@@ -53,6 +54,35 @@ main {
   height: 100vh;
   width: 33%;
 }
+
+.placeholder {
+  position: relative;
+  // background: ghostwhite;
+  height: 280px;
+  width: 100%;
+
+   & img {
+    height: 200px;
+    margin: 15px 0px 15px 0px;
+    position: relative;
+    max-width: 100%;
+
+    &#circle {
+      -webkit-clip-path: circle(75px at 50% 50%);
+      clip-path: circle(100px at 50% 50%);
+    }
+  }
+}
+
+.nav {
+  color: snow;
+  text-decoration: none;
+
+  &:hover {
+    color: #6DECAF;
+  }
+}
+
 
 
 // .App-link {

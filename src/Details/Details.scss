@@ -1,0 +1,26 @@
+.Details{
+  display: flex;
+  flex-direction: column;
+  width: 78%;
+  margin: 10px auto;
+  padding: 10px;
+
+  & img {
+    width: 100%;
+  }
+}
+
+
+.Details-description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  & div {
+    margin: 25px 0px;
+  }
+  & p {
+    font-size: 28px;
+    margin: 15px 0px 15px 0px;
+  }
+}

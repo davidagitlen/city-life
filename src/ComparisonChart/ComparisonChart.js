@@ -31,18 +31,17 @@ class ComparisonChart extends Component{
             label: cityOneName,
             data: data.cityOneData.map(datum => datum.score_out_of_10.toFixed(2)),
             fill: false,
-            backgroundColor: data.cityOneData.map(datum => 'rgba(0, 0, 255)'),
-            borderColor: data.cityOneData.map(datum => 'rgba(255, 0, 0)'),
-            borderWidth: 1,
-            yAxisId: 'Testing One'
+            backgroundColor: data.cityOneData.map(datum => '#2E2EC9'),
+            borderColor: data.cityOneData.map(datum => '#2E2EC9'),
+            borderWidth: 1
           },
           {
             type: 'line',
             label: cityTwoName,
             data: data.cityTwoData.map(datum => datum.score_out_of_10.toFixed(2)),
             fill: false,
-            backgroundColor: data.cityTwoData.map(datum => 'rgba(0, 255, 0)'),
-            borderColor: data.cityTwoData.map(datum => 'rgba(0, 255, 0)'),
+            backgroundColor: data.cityTwoData.map(datum => '#6DECAF'),
+            borderColor: data.cityTwoData.map(datum => '#6DECAF'),
             borderWidth: 1.5
           },
         ]
@@ -52,13 +51,17 @@ class ComparisonChart extends Component{
         maintainAspectRatio: false,
         scales: {
           yAxes: [{
-            id: 'Testing One',
             ticks: {
               beginAtZero: true,
+              suggestedMax: 10,
+            },
+            gridLines: {
+              display: true,
+              drawBorder: false
             },
             scaleLabel: {
               display: true,
-              labelString: 'One'
+              labelString: 'Score'
             }
           }
           ]

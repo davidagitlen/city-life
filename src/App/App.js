@@ -19,13 +19,13 @@ export const App = (props) => {
       <div className='App'>
         <header className='App-header'>
           <div className='site-name'>
-            <img src={citySkyline} alt='' />
+            {/* <img src={citySkyline} alt='' /> */}
             <h1>City<span>Life</span></h1>
           </div>
           <div className='nav-links'>
             <NavLink to='/' className='nav'>Compare Cities</NavLink>
-            <NavLink to='/past-comparisons'>History</NavLink>
-            <NavLink to='/world-map'>Map</NavLink>
+            <NavLink to='/past-comparisons' className='nav'>History</NavLink>
+            <NavLink to='/world-map' className='nav'>Map</NavLink>
           </div>
         </header>
         <main>
@@ -35,10 +35,12 @@ export const App = (props) => {
               <div className='forms'>
                 <div className='city-one'>
                   <CityForm ordinal='one' />
+                  {!cityOneReady && <div className='placeholder'><img id='circle' src={citySkyline} alt=''/></div>}
                   {(cityOneReady || null) && <City ordinal='one' />}
                 </div>
                 <div className='city-two'>
                   <CityForm ordinal='two' />
+                  {!cityTwoReady && <div className='placeholder'><img id='circle' src={citySkyline} alt='' /></div>}
                   {(cityTwoReady || null) && <City ordinal='two' />}
                 </div>
               </div>
