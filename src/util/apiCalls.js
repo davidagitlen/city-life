@@ -54,15 +54,3 @@ export const fetchAdditionalData = async (href) => {
   const data = await response.json();
   return data;
 }
-
-// export const fetchMap = async (lat, lon) => {
-//   const url = `https://api.mapbox.com/styles/v1/mapbox/light-v9/static/${lon},${lat},6,0,0/350x300?access_token=pk.eyJ1IjoiZGF2aWRhZ2l0bGVuIiwiYSI6ImNrMGs5NTNlcTA0dGkzY3MzdHZ3MTRiZGoifQ.ZtBWtklc66DFIgPC2CI_qg`;
-//   const response = await fetch(url);
-//   if (!response.ok) {
-//     throw new Error('There was a problem retrieving that city\'s map!')
-//   }
-//   console.log('in fetchmap response', response);
-//   const data = await response.json();
-//   console.log('in fetchmap data', data)
-//   return data;
-// }

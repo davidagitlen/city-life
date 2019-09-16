@@ -90,7 +90,7 @@ describe('CityForm', () => {
 
   describe('handleCitySelection', () => {
 
-    it('should update city property of state with input value', () => {
+    it.only('should update city property of state with input value', () => {
       const mockEvent = {
         target: {
           name: 'city',
@@ -101,8 +101,16 @@ describe('CityForm', () => {
       const expected = {
         city: 'Uncasville',
         cities: [],
-        error: "Cannot read property 'ua:item' of undefined"
+        error: ""
       };
+
+      const wrapper = shallow(
+        <CityForm 
+          cityInfo={mockCityInfo}
+          ordinal='one'
+        />, {disableLifecycleMethods: true}
+      )
+
 
       wrapper.instance().handleCitySelection(mockEvent);
 
