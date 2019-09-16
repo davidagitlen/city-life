@@ -83,6 +83,42 @@ describe('apiCalls', () => {
     });
   });
 
-  
+  describe('fetchCityImages', () => {
+
+    it('should call fetch with the correct url, appending "images" to the end of the url it is passed', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve()
+        });
+      });
+
+      const expected = 'https://api.teleport.org/api/urban_areas/slug:Denver/images';
+
+      fetchCityImages(`https://api.teleport.org/api/urban_areas/slug:Denver/`);
+
+      expect(window.fetch).toHaveBeenCalledWith(expected);
+    });
+
+    it('should return an object with a key of photos set to an array containing an object with attribution and image keys (happy)', () => {
+      const expected = {photos : [{attribution: 'Flickr', image: {web: 'https://blah.com/web.png'}}]}
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(expected)
+        });
+      });
+
+      expect(fetchCityImages(`https://api.teleport.org/api/urban_areas/slug:Denver/`)).resolves.toEqual(expected);
+    });
+
+    it('should return an error if the fetch is not successful', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('There was an error fetching that city\'s images'))
+      });
+
+      expect(fetchCityImages(`https://api.teleport.org/api/urban_areas/slug:Denver/`)).rejects.toEqual(Error('There was an error fetching that city\'s images'));
+    });
+  });
 
 });
