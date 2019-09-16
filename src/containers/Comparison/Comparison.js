@@ -1,10 +1,7 @@
 import React from 'react';
 import './Comparison.scss';
-import ComparisonChart from '../ComparisonChart/ComparisonChart';
+import ComparisonChart from '../../components/ComparisonChart/ComparisonChart';
 import { connect } from 'react-redux';
-
-
-
 
 const Comparison = (props) => {
   console.log('in comparison', props)

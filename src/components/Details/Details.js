@@ -3,8 +3,9 @@ import './Details.scss';
 import { Link } from 'react-router-dom';
 
 const Details = (props) => {
-  const {latitude, longitude, population, fullName, timeZone} = props.props.details;
-  const {attribution, images} = props.props.images;
+  console.log('in details', props);
+  const {latitude, longitude, population, fullName, timeZone} = props.cityData.details;
+  const {attribution, images} = props.cityData.images;
   const cleanTimeZone = timeZone.replace(/_/g, ' ');
   const mapURL = `https://api.mapbox.com/styles/v1/mapbox/light-v9/static/${longitude},${latitude},6,0,0/350x300?access_token=pk.eyJ1IjoiZGF2aWRhZ2l0bGVuIiwiYSI6ImNrMGs5NTNlcTA0dGkzY3MzdHZ3MTRiZGoifQ.ZtBWtklc66DFIgPC2CI_qg`;
   const titleAttribution = `Photo by ${attribution.photographer}, from ${attribution.site}. Original can be found at ${attribution.source}.`

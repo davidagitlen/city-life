@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.scss';
-import citySkyline from '../images/city-skyline.svg';
+import citySkyline from '../../images/city-skyline.svg';
 import CityForm from '../CityForm/CityForm';
 import City from '../City/City';
 import Comparison from '../Comparison/Comparison';
-import Details from '../Details/Details';
+import Details from '../../components/Details/Details';
 import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 import { NavLink, Route } from 'react-router-dom';
 
 
 export const App = (props) => {
-    console.log('in app', props)
+    console.log('in app', 'blahb lahb ab', props)
     const { cityInfo } = props;
     const cityOneReady = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
     const cityTwoReady = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
@@ -53,7 +53,7 @@ export const App = (props) => {
           const awaitData = cityOneReady || cityTwoReady; 
           const cityCheck = awaitData ?cityInfo.one.details.fullName.includes(name) : null;
           const cityProps = cityCheck ? cityInfo.one : cityInfo.two;
-          return <Details props={cityProps}/>
+          return <Details cityData={cityProps}/>
         }}
         />
         </main>

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details should match the snapshot with data passed in correctly 1`] = `
+<div
+  className="Details"
+>
+  <Link
+    className="back-btn"
+    to="/"
+  >
+    ◀ back
+  </Link>
+  <div
+    className="Details-image"
+  >
+    <img
+      alt="Denver, Colorado!"
+      src="http://blurg.com/web"
+      title="Photo by undefined, from undefined. Original can be found at undefined."
+    />
+  </div>
+  <div
+    className="Details-description"
+  >
+    <div>
+      <p>
+        Denver, Colorado!
+      </p>
+      <p>
+        <span>
+          Population :
+        </span>
+         
+        1
+      </p>
+      <p>
+        <span>
+          Time Zone :
+        </span>
+         
+        Denver!
+      </p>
+    </div>
+    <div>
+      <img
+        alt=""
+        src="https://api.mapbox.com/styles/v1/mapbox/light-v9/static/10,10,6,0,0/350x300?access_token=pk.eyJ1IjoiZGF2aWRhZ2l0bGVuIiwiYSI6ImNrMGs5NTNlcTA0dGkzY3MzdHZ3MTRiZGoifQ.ZtBWtklc66DFIgPC2CI_qg"
+      />
+    </div>
+  </div>
+</div>
+`;

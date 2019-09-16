@@ -1,11 +1,11 @@
 import React from 'react';
 import { CityForm, mapStateToProps, mapDispatchToProps } from './CityForm';
-import { setCityScores, setcityDetails, setCityImages } from '../actions';
-import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalData, fetchCityImages } from '../util/apiCalls';
-import { formatCityName, formatAdditionalCityData } from '../util/dataCleaner'; 
+import { setCityScores, setcityDetails, setCityImages } from '../../actions';
+import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalData, fetchCityImages } from '../../util/apiCalls';
+import { formatCityName, formatAdditionalCityData } from '../../util/dataCleaner'; 
 import { shallow } from 'enzyme';
 
-jest.mock('../util/apiCalls');
+jest.mock('../../util/apiCalls');
 
 describe('CityForm', () => {
   let wrapper, mockCityInfo;

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ComparisonChart should match the snapshot with data passed in correctly 1`] = `undefined`;

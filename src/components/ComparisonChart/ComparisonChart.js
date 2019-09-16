@@ -15,7 +15,6 @@ class ComparisonChart extends Component{
 
   createChart = () => {
     const { data, cityOneName, cityTwoName } = this.props;
-
     const currentChartRef = this.chartRef.current.getContext('2d');
 
     new Chart(currentChartRef, {

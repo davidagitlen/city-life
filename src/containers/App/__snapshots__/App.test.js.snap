@@ -10,10 +10,6 @@ exports[`App should match the snapshot with data passed in correctly 1`] = `
     <div
       className="site-name"
     >
-      <img
-        alt=""
-        src="city-skyline.svg"
-      />
       <h1>
         City
         <span>
@@ -31,11 +27,13 @@ exports[`App should match the snapshot with data passed in correctly 1`] = `
         Compare Cities
       </NavLink>
       <NavLink
+        className="nav"
         to="/past-comparisons"
       >
         History
       </NavLink>
       <NavLink
+        className="nav"
         to="/world-map"
       >
         Map
@@ -46,6 +44,10 @@ exports[`App should match the snapshot with data passed in correctly 1`] = `
     <Route
       exact={true}
       path="/"
+      render={[Function]}
+    />
+    <Route
+      path="/details/:name"
       render={[Function]}
     />
   </main>
