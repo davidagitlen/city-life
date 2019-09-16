@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js';
-import { connect } from 'react-redux';
 import './ComparisonChart.scss';
-let myLineChart; 
 
 class ComparisonChart extends Component{
   chartRef = React.createRef();
@@ -17,12 +15,10 @@ class ComparisonChart extends Component{
 
   createChart = () => {
     const { data, cityOneName, cityTwoName } = this.props;
-    // const { cityOneName } = this.props;
-    // const { cityTwoname } = this.props;
 
     const currentChartRef = this.chartRef.current.getContext('2d');
 
-    myLineChart = new Chart(currentChartRef, {
+    new Chart(currentChartRef, {
       type: 'line',
       data: {
         labels: data.cityOneData.map(datum => datum.name),
@@ -81,7 +77,6 @@ class ComparisonChart extends Component{
         </div>
     )
   }
-
 }
 
 export default ComparisonChart;
