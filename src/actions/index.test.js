@@ -6,10 +6,10 @@ describe('Actions', () => {
     it('should return an object with SET_CITY_SCORES type, an ordinal, and an array of scores', () => {
 
       const mockScores = [{score: 1}, {score: 2}, {score: 3}];
-      const ordinal = 2;
+      const ordinal = 'one';
       const expected = {
         type: 'SET_CITY_SCORES',
-        ordinal: 2,
+        ordinal: 'one',
         array: mockScores
       }
 
@@ -21,10 +21,10 @@ describe('Actions', () => {
     it('should return an object with SET_CITY_DETAILS type, an ordinal, and a details object', () => {
 
       const mockDetails = {name: 'Boulder', population: 100000};
-      const ordinal = 1;
+      const ordinal = 'one';
       const expected = {
         type: 'SET_CITY_DETAILS',
-        ordinal: 1,
+        ordinal: 'one',
         details: mockDetails
       };
 
@@ -39,10 +39,10 @@ describe('Actions', () => {
         web: 'https://blah.com/web/blah',
         mobile: 'https://blah.com/mobile/blah'
       };
-      const ordinal = 3;
+      const ordinal = 'two';
       const expected = {
         type: 'SET_CITY_IMAGES',
-        ordinal: 3,
+        ordinal: 'two',
         images: mockImages
       };
 
