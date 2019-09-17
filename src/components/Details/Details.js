@@ -1,6 +1,7 @@
 import React from 'react';
 import './Details.scss';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Details = (props) => {
   const {latitude, longitude, population, fullName, timeZone} = props.cityData.details;
@@ -30,3 +31,7 @@ const Details = (props) => {
 }
 
 export default Details;
+
+Details.propTypes = {
+  cityData: PropTypes.object
+}

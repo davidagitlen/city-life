@@ -5,3 +5,18 @@
   min-height: 112.3vh;
   width: 100%;
 }
+
+.instructions {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 250px;
+    width: 470px;
+    top: 250px;
+    left: 250px;
+    padding: 15px;
+    font-size: 18px;
+    background-color: rgba(46,46,201, .05)
+  }
+

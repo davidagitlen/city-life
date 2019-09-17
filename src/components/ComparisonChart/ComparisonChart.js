@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js';
 import './ComparisonChart.scss';
+import PropTypes from 'prop-types';
 
 class ComparisonChart extends Component{
   chartRef = React.createRef();
@@ -67,7 +68,6 @@ class ComparisonChart extends Component{
   }
 
   render() {
-    console.log('in comparisonChart', this.props)
     return(
         <div className='ComparisonChart'>
           <canvas
@@ -80,3 +80,9 @@ class ComparisonChart extends Component{
 }
 
 export default ComparisonChart;
+
+ComparisonChart.propTypes = {
+  cityOneName: PropTypes.string,
+  cityTwoName: PropTypes.string,
+  data: PropTypes.object
+}

@@ -6,7 +6,7 @@ import City from '../City/City';
 import Comparison from '../Comparison/Comparison';
 import Details from '../../components/Details/Details';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { NavLink, Route } from 'react-router-dom';
 
 
@@ -64,3 +64,8 @@ export const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(App);
+
+App.propTypes = {
+  cityInfo: PropTypes.object,
+  dispatch: PropTypes.func
+}

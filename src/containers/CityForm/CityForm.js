@@ -3,6 +3,7 @@ import './CityForm.scss';
 import { setCityScores, setCityDetails, setCityImages } from '../../actions';
 import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalData, fetchCityImages } from '../../util/apiCalls';
 import { formatCityName, formatAdditionalCityData } from '../../util/dataCleaner';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 export class CityForm extends Component{
@@ -126,3 +127,11 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityForm);
+
+CityForm.propTypes = {
+  cityInfo: PropTypes.object,
+  ordinal: PropTypes.string,
+  setCityDetails: PropTypes.func,
+  setCityImages: PropTypes.func,
+  setCityScores: PropTypes.func
+}

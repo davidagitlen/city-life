@@ -3,6 +3,7 @@ import './Comparison.scss';
 import ComparisonChart from '../../components/ComparisonChart/ComparisonChart';
 import { connect } from 'react-redux';
 import { formatChartData } from '../../util/dataCleaner';
+import PropTypes from 'prop-types';
 
 export const Comparison = (props) => {
   const { cityInfo } = props;
@@ -21,7 +22,7 @@ export const Comparison = (props) => {
   return(
     <div className='Comparison'>
       {(!cityOneReady || !cityTwoReady) && 
-      <div name='instructions'>
+      <div className='instructions'>
       <p>Select two cities to from the form on the left to see a comparison of their quality of life data.</p>
       </div>}
       {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={economicData} cityOneName={cityOneName} cityTwoName={cityTwoName}/>}
@@ -37,3 +38,8 @@ export const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(Comparison);
+
+Comparison.propTypes = {
+  cityInfo: PropTypes.object,
+  dispatch: PropTypes.func
+}

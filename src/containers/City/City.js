@@ -1,6 +1,7 @@
 import React from 'react';
 import './City.scss';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 export const City = (props) => {
@@ -25,3 +26,9 @@ export const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(City);
+
+City.propTypes = {
+  cityInfo: PropTypes.object,
+  dispatch: PropTypes.func,
+  ordinal: PropTypes.string
+}
