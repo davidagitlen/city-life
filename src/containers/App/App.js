@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink, Route } from 'react-router-dom';
 
-
 export const App = (props) => {
     const { cityInfo } = props;
     const cityOneReady = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
