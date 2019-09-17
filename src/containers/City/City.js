@@ -11,7 +11,7 @@ export const City = (props) => {
   const linkName = fullName ? fullName.split(',')[0] : null;
   return(
     <div className='City'>
-      <Link to={`details/${linkName}`} >
+      <Link to={`details/${linkName}`} className='link'>
         <div>
           <img id='circle' src={web} alt=''/>
         </div>
