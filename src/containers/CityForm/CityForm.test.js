@@ -1,12 +1,12 @@
 import React from 'react';
 import { CityForm, mapStateToProps, mapDispatchToProps } from './CityForm';
-import { setCityScores, setcityDetails, setCityImages } from '../../actions';
+import { setCityScores, setCityDetails, setCityImages } from '../../actions';
 import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalData, fetchCityImages } from '../../util/apiCalls';
 import { shallow } from 'enzyme';
 
 jest.mock('../../util/apiCalls');
 jest.mock('../../actions');
-
+;
 describe('CityForm', () => {
   let wrapper, mockCityInfo;
 
@@ -319,6 +319,67 @@ describe('CityForm', () => {
 
       await wrapper.instance().handleAdditionalData();
       expect(wrapper.instance().props.setCityDetails).toHaveBeenCalledWith('one', expected);
+    });
+  });
+
+  describe('mapStateToProps', () => {
+    it('should return an object with appropriate data', () => {
+      const mockState = {
+        cityInfo: mockCityInfo,
+        unrealData: 'halp me, lord!'
+      };
+      const expected = {
+        cityInfo: mockCityInfo,
+      };
+      const mappedProps = mapStateToProps(mockState);
+      expect(mappedProps).toEqual(expected);
+    });
+  });
+
+  describe('mapDispatchToProps', () => {
+
+    let mockDispatch, mappedProps;
+
+    beforeEach(() => {
+      mockDispatch = jest.fn();
+
+      mappedProps = mapDispatchToProps(mockDispatch)
+    });
+    
+    it('calls dispatch with action object from setCityScores', () => {
+      const mockSetCityScoresObject = {
+        ordinal: 'one',
+        array: [{score: 1}, {score: 2}]
+      };
+      const actionToDispatch = setCityScores(mockSetCityScoresObject);
+
+      mappedProps.setCityScores(mockSetCityScoresObject);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+    });
+
+    it('calls dispatch with action object from setCityDetails', () => {
+      const mockSetCityDetailsObject = {
+        ordinal: 'one',
+        details: {name: 'Help', location: 'me'}
+      }
+      const actionToDispatch = setCityDetails(mockSetCityDetailsObject);
+
+      mappedProps.setCityDetails(mockSetCityDetailsObject);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+    });
+
+    it('calls dispatch with action object from setCityImages', () => {
+      const mockSetCityImagesObject = {
+        ordinal: 'one',
+        images: {web: 'http://blah.com/blah'}
+      }
+      const actionToDispatch = setCityImages(mockSetCityImagesObject);
+
+      mappedProps.setCityImages(mockSetCityImagesObject);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
   });
 
