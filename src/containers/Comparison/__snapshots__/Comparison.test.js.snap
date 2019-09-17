@@ -5,7 +5,7 @@ exports[`Comparison should match the snapshot if some of the data is missing 1`]
   className="Comparison"
 >
   <div
-    name="instructions"
+    className="instructions"
   >
     <p>
       Select two cities to from the form on the left to see a comparison of their quality of life data.
