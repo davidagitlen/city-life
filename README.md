@@ -7,7 +7,7 @@ Cities are compared on seventeen individual metrics ranging from housing availab
 
 Clone down the repo and install the dependencies with `npm install`.
 
-Run npm start and visit http://localhost:3000 to view the application in the browser.
+Run `npm start` and visit http://localhost:3000 to view the application in the browser.
 
 Run the test suite with `npm test`.
 
