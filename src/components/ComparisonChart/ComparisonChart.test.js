@@ -21,12 +21,21 @@ describe('ComparisonChart', () => {
     );
   });
 
-  it.skip('should match the snapshot with data passed in correctly', () => {
-    global.createRef = jest.fn().mockImplementation(() => ({
-    current : {
-      getContext : jest.fn()
-    }
-  }));
+  it('should match the snapshot with data passed in correctly', () => {
+    const wrapper = shallow(
+      <ComparisonChart
+        data={mockData}
+        cityOneName='Boulder'
+        cityTwoname='Topeka'
+      /> 
+    );
+
+    wrapper.instance().props.chartRef = {
+      current: {
+        getContext : jest.fn()
+      }
+    };
+    wrapper.instance().forceUpdate();
     expect(wrapper).toMatchSnapshot();
   });
 
