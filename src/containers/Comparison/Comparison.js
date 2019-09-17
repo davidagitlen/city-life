@@ -4,17 +4,12 @@ import ComparisonChart from '../../components/ComparisonChart/ComparisonChart';
 import { connect } from 'react-redux';
 import { formatChartData } from '../../util/dataCleaner';
 
-const Comparison = (props) => {
+export const Comparison = (props) => {
   const { cityInfo } = props;
   const cityOneReady = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
   const cityTwoReady = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
   const cityOneName = cityOneReady ? cityInfo.one.details.fullName.split(',')[0] : null;
   const cityTwoName = cityTwoReady ? cityInfo.two.details.fullName.split(',')[0] : null;
-
-  // const formatChartData = (arrayOne, arrayTwo, indexes) => ({
-  //   cityOneData: indexes.map(index => arrayOne[index]),
-  //   cityTwoData: indexes.map(index => arrayTwo[index]),
-  // });
 
   const cityOneScores = cityInfo.one.scores;
   const cityTwoScores = cityInfo.two.scores; 

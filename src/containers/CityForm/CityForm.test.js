@@ -6,6 +6,7 @@ import { formatCityName, formatAdditionalCityData } from '../../util/dataCleaner
 import { shallow } from 'enzyme';
 
 jest.mock('../../util/apiCalls');
+jest.mock('../../actions');
 
 describe('CityForm', () => {
   let wrapper, mockCityInfo;
@@ -50,12 +51,10 @@ describe('CityForm', () => {
 
     fetchUrbanAreas.mockImplementation(() => {
       return Promise.resolve({
-        urbanAreas: {
           _links: {
             'ua:item' : 'Denver'
           }
-        }
-      });
+        });
     });
 
     fetchCityScores.mockImplementation(() => {
@@ -109,7 +108,7 @@ describe('CityForm', () => {
           cityInfo={mockCityInfo}
           ordinal='one'
         />, {disableLifecycleMethods: true}
-      )
+      );
 
       wrapper.instance().handleCitySelection(mockEvent);
 
@@ -117,9 +116,15 @@ describe('CityForm', () => {
     });
   });
 
-  describe('handleSubmitCity', () => {
+  describe('componentDidMount', () => {
 
-    it('should invoke getCityScores, getCityImages, and handleAdditionalData', async () => {
+    it('should invoke fetchUrbanAreas', () => {
+      expect(fetchUrbanAreas).toHaveBeenCalled();
+    });
+  });
+
+  describe('handleSubmitCity', () => {
+    it('should invoke getCityScores, getCityImages, and handleAdditionalData', () => {
 
       const mockEvent = {
         preventDefault: jest.fn()
@@ -130,14 +135,60 @@ describe('CityForm', () => {
       wrapper.instance().handleAdditionalData = jest.fn();
       wrapper.instance().forceUpdate();
 
-      await wrapper.instance().handleSubmitCity(mockEvent);
+      wrapper.instance().handleSubmitCity(mockEvent);
 
       expect(wrapper.instance().getCityScores).toHaveBeenCalled();
       expect(wrapper.instance().getCityImages).toHaveBeenCalled();
       expect(wrapper.instance().handleAdditionalData).toHaveBeenCalled();
-
     });
   });
+
+  describe('getCityScores', () => {
+
+    it('should invoke fetchCityScores with a properly formatted city name taken from state and cleaned with replace', () => {
+
+      const mockEvent = {
+        target: {
+          name: 'city',
+          value: 'San, Francisco, Bay, Area'
+        }
+      };
+
+      const wrapper = shallow(
+        <CityForm 
+          cityInfo={mockCityInfo}
+          ordinal='one'
+        />
+      );
+  
+      wrapper.instance().handleCitySelection(mockEvent);
+      wrapper.instance().getCityScores();
+      expect(fetchCityScores).toHaveBeenCalledWith(`https://api.teleport.org/api/urban_areas/slug:san-francisco-bay-area/`);
+    });
+
+    it('should invoke setCityScores if fetch is successful and response is ok', async () => {
+
+      const wrapper = shallow(
+        <CityForm
+          cityInfo={mockCityInfo}
+          ordinal='one'
+          setCityScores={jest.fn()}
+        />
+      ); 
+      
+      wrapper.instance().getCityScores();
+
+      expect(setCityScores).toHaveBeenCalled();
+
+
+
+
+
+    });
+
+  });
+
+
 
   
 });
