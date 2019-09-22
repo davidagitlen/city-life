@@ -1,3 +1,16 @@
+export const requestCityScores = (ordinal) => ({
+  type: 'REQUEST_CITY_SCORES',
+  ordinal,
+})
+export const requestCityDetails = (ordinal) => ({
+  type: 'REQUEST_CITY_DETAILS',
+  ordinal,
+})
+export const requestCityImages = (ordinal) => ({
+  type: 'REQUEST_CITY_IMAGES',
+  ordinal,
+})
+
 export const setCityScores = (ordinal, array) => ({
   type: 'SET_CITY_SCORES',
   ordinal,

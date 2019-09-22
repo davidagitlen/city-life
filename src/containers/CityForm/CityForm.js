@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './CityForm.scss';
-import { setCityScores, setCityDetails, setCityImages } from '../../actions';
+import { bindActionCreators } from 'redux';
+import {
+  setCityScores, setCityDetails, setCityImages,
+  requestCityScores, requestCityDetails, requestCityImages,
+} from '../../actions';
 import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalData, fetchCityImages } from '../../util/apiCalls';
 import { formatCityName, formatAdditionalCityData } from '../../util/dataCleaner';
 import PropTypes from 'prop-types';
@@ -39,6 +43,7 @@ export class CityForm extends Component{
 
   getCityScores = async () => {
     const citySnippet = this.state.city.toLowerCase().replace(/,|\./g, '').replace(/\s/g, '-');
+    this.props.requestCityScores(this.props.ordinal);
     try {
       const city = await fetchCityScores(`https://api.teleport.org/api/urban_areas/slug:${citySnippet}/`);
       const cityScores = city.categories;
@@ -50,6 +55,7 @@ export class CityForm extends Component{
 
   getCityImages = async () => {
     const citySnippet = this.state.city.toLowerCase().replace(/,|\./g, '').replace(/\s/g, '-');
+    this.props.requestCityImages(this.props.ordinal);
     try {
       const city = await fetchCityImages(`https://api.teleport.org/api/urban_areas/slug:${citySnippet}/`);
       const cityImages = {
@@ -75,6 +81,7 @@ export class CityForm extends Component{
 
   handleAdditionalData = async () => {
     const href = await this.getAdditionalCityData();
+    this.props.requestCityDetails(this.props.ordinal);
     try {
       const additionalData = await fetchAdditionalData(href);
       const formattedData = formatAdditionalCityData(additionalData);
@@ -120,11 +127,17 @@ export const mapStateToProps = state => ({
   cityInfo: state.cityInfo
 });
 
-export const mapDispatchToProps = dispatch => ({
-  setCityScores: (ordinal, array) => dispatch(setCityScores(ordinal, array)),
-  setCityDetails: (ordinal, details) => dispatch(setCityDetails(ordinal, details)),
-  setCityImages: (ordinal, images) => dispatch(setCityImages(ordinal, images))
-});
+export const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    requestCityScores,
+    setCityScores,
+    requestCityDetails,
+    setCityDetails,
+    requestCityImages,
+    setCityImages,
+  },
+  dispatch,
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityForm);
 
@@ -133,5 +146,8 @@ CityForm.propTypes = {
   ordinal: PropTypes.string,
   setCityDetails: PropTypes.func,
   setCityImages: PropTypes.func,
-  setCityScores: PropTypes.func
+  setCityScores: PropTypes.func,
+  requestCityDetails: PropTypes.func,
+  requestCityImages: PropTypes.func,
+  requestCityScores: PropTypes.func
 }

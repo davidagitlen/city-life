@@ -1,49 +1,39 @@
 import React, { Component } from 'react';
-import Chart from 'chart.js';
 import './ComparisonChart.scss';
 import PropTypes from 'prop-types';
+import { Line } from 'react-chartjs-2';
+
 
 class ComparisonChart extends Component{
-  chartRef = React.createRef();
-
-  componentDidMount() {
-    this.createChart();
+  constructor (props) {
+    super();
+    this.chartReference = {};
+    this.myChartDataMap = [
+      { chart: 'cityOneData', borderColor: '#2E2EC9', borderWidth: 1 },
+      { chart: 'cityTwoData', borderColor: '#6DECAF', borderWidth: 1.5 }
+    ];
   }
 
   componentDidUpdate() {
-    this.createChart();
+    this.chartReference.chartInstance.update();
   }
 
-  createChart = () => {
-    const { data, cityOneName, cityTwoName } = this.props;
-    const currentChartRef = this.chartRef.current.getContext('2d');
-   
-
-    new Chart(currentChartRef, {
-      type: 'line',
-      data: {
+  getChartStuff = () => {
+    const { data, cityNames } = this.props;
+    
+    const chartData = {
         labels: data.cityOneData.map(datum => datum.name),
-        datasets: [
-          {
-            label: cityOneName,
-            data: data.cityOneData.map(datum => datum.score_out_of_10.toFixed(2)),
-            fill: false,
-            backgroundColor: data.cityOneData.map(datum => '#2E2EC9'),
-            borderColor: data.cityOneData.map(datum => '#2E2EC9'),
-            borderWidth: 1
-          },
-          {
+        datasets: this.myChartDataMap.map(({ chart, borderColor, borderWidth }, index) => ({
             type: 'line',
-            label: cityTwoName,
-            data: data.cityTwoData.map(datum => datum.score_out_of_10.toFixed(2)),
+            label: cityNames[index],
+            data: data[chart].map(datum => datum.score_out_of_10.toFixed(2)),
             fill: false,
-            backgroundColor: data.cityTwoData.map(datum => '#6DECAF'),
-            borderColor: data.cityTwoData.map(datum => '#6DECAF'),
-            borderWidth: 1.5
-          },
-        ]
-      },
-      options: {
+            backgroundColor: data[chart].map(() => borderColor),
+            borderColor: data.cityOneData.map(() => borderColor),
+            borderWidth
+          })),
+      };
+      const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
@@ -63,16 +53,19 @@ class ComparisonChart extends Component{
           }
           ]
         }
-      }
-    });
+      };
+      
+      return { chartData, chartOptions };
   }
 
   render() {
+    const chartStuff = this.getChartStuff();
     return(
         <div className='ComparisonChart'>
-          <canvas
-            id="myChart"
-            ref={this.chartRef}
+          <Line
+            ref={(reference) => this.chartReference = reference}
+            data={chartStuff.chartData}
+            options={chartStuff.chartOptions}
           />
         </div>
     )
@@ -82,7 +75,6 @@ class ComparisonChart extends Component{
 export default ComparisonChart;
 
 ComparisonChart.propTypes = {
-  cityOneName: PropTypes.string,
-  cityTwoName: PropTypes.string,
+  cityNames: PropTypes.array,
   data: PropTypes.object
 }

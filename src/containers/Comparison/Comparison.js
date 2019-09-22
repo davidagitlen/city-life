@@ -6,40 +6,56 @@ import { formatChartData } from '../../util/dataCleaner';
 import PropTypes from 'prop-types';
 
 export const Comparison = (props) => {
-  const { cityInfo } = props;
-  const cityOneReady = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
-  const cityTwoReady = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
-  const cityOneName = cityOneReady ? cityInfo.one.details.fullName.split(',')[0] : null;
-  const cityTwoName = cityTwoReady ? cityInfo.two.details.fullName.split(',')[0] : null;
+  const { cityInfoReducer: cityInfo } = props;
+  const { inFlightScores, inFlightDetails, inFlightImages, details, scores } = cityInfo;
+  const cityNames = details.map(detail => detail.fullName.split(',')[0]);
+  const isReady = !(inFlightScores.includes(true) || inFlightDetails.includes(true) ||inFlightImages.includes(true));
+  const chartCategoryMap = {
+    economicIndexes: [0, 1, 2, 3, 6, 11, 12],
+    healthAndSafetyIndexes: [7, 8, 10, 16],
+    culturalIndexes: [9, 14, 15],
+    infrastructureIndexes: [4, 5, 13]
+  };
 
-  const cityOneScores = cityInfo.one.scores;
-  const cityTwoScores = cityInfo.two.scores; 
-  const economicData = formatChartData(cityOneScores, cityTwoScores, [0,1,2,3,6,11,12]);
-  const healthAndSafetyData = formatChartData(cityOneScores, cityTwoScores, [7,8,10,16]);
-  const culturalData = formatChartData(cityOneScores, cityTwoScores, [9,14,15]);
-  const infrastructureData = formatChartData(cityOneScores, cityTwoScores, [4,5,13]);
+  const chartCategories = Object.keys(chartCategoryMap);
+  const chartList = chartCategories.map(category => formatChartData(...scores, chartCategoryMap[category]));
 
   return(
     <div className='Comparison'>
-      {(!cityOneReady || !cityTwoReady) && 
-      <div className='instructions'>
-      <p>Select two cities to from the form on the left to see a comparison of their quality of life data.</p>
-      </div>}
-      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={economicData} cityOneName={cityOneName} cityTwoName={cityTwoName}/>}
-      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={healthAndSafetyData} cityOneName={cityOneName} cityTwoName={cityTwoName}/>}
-      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={culturalData} cityOneName={cityOneName} cityTwoName={cityTwoName}/>}
-      {(cityOneReady || null) && (cityTwoReady || null) && <ComparisonChart data={infrastructureData} cityOneName={cityOneName} cityTwoName={cityTwoName}/>}
+      {
+        !isReady ?
+        <div className='instructions'>
+          <p>
+            Select two cities to from the form on the left to see a comparison of their quality of life data.
+          </p>
+        </div> :
+        <div className="comparison-chart__container">
+          {
+            chartList.map(chart =>
+              <ComparisonChart
+                data={chart}
+                key={Math.random(1)}
+                cityNames={cityNames}
+              />)
+          }
+      </div>
+      }
     </div>
   )
 }
 
 export const mapStateToProps = state => ({
-  cityInfo: state.cityInfo
-})
+  ...state
+});
 
 export default connect(mapStateToProps)(Comparison);
 
 Comparison.propTypes = {
-  cityInfo: PropTypes.object,
+  scores: PropTypes.array,
+  details: PropTypes.array,
+  images: PropTypes.array,
+  inFlightScores: PropTypes.array,
+  inFlightDetails: PropTypes.array,
+  inFlightImages: PropTypes.array,
   dispatch: PropTypes.func
 }
