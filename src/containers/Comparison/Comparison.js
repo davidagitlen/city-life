@@ -6,7 +6,7 @@ import { formatChartData } from '../../util/dataCleaner';
 import PropTypes from 'prop-types';
 
 export const Comparison = (props) => {
-
+  console.log(props)
   const { cityInfo: { one = {}, two = {} } } = props;
   const {
     scores: scoresOne = [], images: imagesOne = {}, details: detailsOne = {},
@@ -27,10 +27,28 @@ export const Comparison = (props) => {
   const cityTwoScores = scoresTwo; 
   const isReadyToDisplay = !!((cityOneReady || null) && (cityTwoReady || null));
   
-  const economicData = formatChartData(cityOneScores, cityTwoScores, [0,1,2,3,6,11,12]);
-  const healthAndSafetyData = formatChartData(cityOneScores, cityTwoScores, [7,8,10,16]);
-  const culturalData = formatChartData(cityOneScores, cityTwoScores, [9,14,15]);
-  const infrastructureData = formatChartData(cityOneScores, cityTwoScores, [4,5,13]);
+  const chartCategoryMap = {
+    economicIndexes: [0, 1, 2, 3, 6, 11, 12],
+    healthAndSafetyIndexes: [7, 8, 10, 16],
+    culturalIndexes: [9, 14, 15],
+    infrastructureIndexes: [4, 5, 13]
+  };
+
+  const { economicIndexes, healthAndSafetyIndexes, culturalIndexes, infrastructureIndexes } = chartCategoryMap;
+
+  const thingToMap = Object.keys(chartCategoryMap);
+
+  const chartList = thingToMap.map(thing => formatChartData(cityOneScores, cityTwoScores, chartCategoryMap[thing]));
+
+  // const chartSet = someOtherArray.map(thing => formatChartData(thing));
+  
+  
+  // const economicData = formatChartData(cityOneScores, cityTwoScores, economicIndexes);
+  // const healthAndSafetyData = formatChartData(cityOneScores, cityTwoScores, healthAndSafetyIndexes);
+  // const culturalData = formatChartData(cityOneScores, cityTwoScores, culturalIndexes);
+  // const infrastructureData = formatChartData(cityOneScores, cityTwoScores, infrastructureIndexes);
+
+
   return(
     <div className='Comparison'>
       {(!cityOneReady || !cityTwoReady) && 
@@ -40,26 +58,14 @@ export const Comparison = (props) => {
       {
         isReadyToDisplay &&
         <div className="comparison-chart__container">
-          <ComparisonChart
-            data={economicData}
-            cityOneName={cityOneName}
-            cityTwoName={cityTwoName}
-          />
-          <ComparisonChart
-            data={healthAndSafetyData}
-            cityOneName={cityOneName}
-            cityTwoName={cityTwoName}
-          />
-          <ComparisonChart
-            data={culturalData}
-            cityOneName={cityOneName}
-            cityTwoName={cityTwoName}
-          />
-          <ComparisonChart
-            data={infrastructureData}
-            cityOneName={cityOneName}
-            cityTwoName={cityTwoName}
-          />
+          {
+            chartList.map(chart =>  
+              <ComparisonChart 
+                data={chart}
+                cityOneName={cityOneName}
+                cityTwoName={cityTwoName}
+              />)
+            }
       </div>
       }
     </div>
