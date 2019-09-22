@@ -1,32 +1,22 @@
 export const cityInfoReducer = ( state = { 
-  one:{
-    scores: [], 
-    details: {
-      fullName: ''
-    }, 
-    images: {}
-  }, 
-  two:{
-    scores: [], 
-    details: {
-      fullName: ''
-    }, 
-    images: {} 
-  }
-}, action) => {
+  scores: [[], []],
+  details: [ { fullName: '' }, { fullName: '' } ],
+  images: [{}, {}],
+}, action ) => {
+  console.log('in the reducer, finally', action)
   switch(action.type) {
-    case 'SET_CITY_SCORES' :
-      const scoresToUpdate = {...state};
-      scoresToUpdate[action.ordinal].scores = action.array;
-      return scoresToUpdate;
+    case 'SET_CITY_SCORES':
+      const { scores } = state;
+      scores[action.ordinal] = action.array;
+      return { ...state, scores };
     case 'SET_CITY_DETAILS' :
-      const detailsToUpdate = {...state};
-      detailsToUpdate[action.ordinal].details = action.details;
-      return detailsToUpdate;
+      const { details } = {...state};
+      details[action.ordinal] = action.details;
+      return { ...state, details };
     case 'SET_CITY_IMAGES' :
-      const imagesToUpdate = {...state};
-      imagesToUpdate[action.ordinal].images = action.images;
-      return imagesToUpdate;
+      const { images } = { ...state };
+      images[action.ordinal] = action.images;
+      return { ...state, images };
     default :
       return state;
   }

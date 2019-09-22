@@ -35,14 +35,37 @@ export const App = (props) => {
             <>
               <div className='forms'>
                 <div className='city-one'>
-                  <CityForm ordinal='one' />
-                  {!cityOneReady && <div className='placeholder'><img id='circle' src={citySkyline} alt=''/></div>}
-                  {(cityOneReady || null) && <City ordinal='one' />}
+                  <CityForm ordinal={0} />
+                  {
+                    !cityOneReady && 
+                    <div className='placeholder'>
+                      <img 
+                        id='circle' 
+                        src={citySkyline} 
+                        alt=''
+                      />
+                    </div>
+                  }
+                  {
+                    (cityOneReady || null) && 
+                    <City ordinal={0} />
+                  }
                 </div>
                 <div className='city-two'>
-                  <CityForm ordinal='two' />
-                  {!cityTwoReady && <div className='placeholder'><img id='circle' src={citySkyline} alt='' /></div>}
-                  {(cityTwoReady || null) && <City ordinal='two' />}
+                  <CityForm ordinal={1} />
+                  {
+                    !cityTwoReady && 
+                    <div className='placeholder'>
+                      <img 
+                        id='circle' 
+                        src={citySkyline} 
+                        alt='' />
+                    </div>
+                  }
+                  {
+                    (cityTwoReady || null) && 
+                    <City ordinal={1} />
+                  }
                 </div>
               </div>
               <Comparison />
