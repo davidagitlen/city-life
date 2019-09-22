@@ -28,3 +28,15 @@ export const formatChartData = (arrayOne, arrayTwo, indexes) => ({
   cityOneData: indexes.map(index => arrayOne[index]),
   cityTwoData: indexes.map(index => arrayTwo[index]),
 });
+
+export const isEmpty = (dataType, dataSet) => {
+  switch(dataType) {
+    case 'object':
+      return dataSet.map(nestedValue => (!Object.keys(nestedValue).length));
+    case 'array':
+      return dataSet.map(nestedValue => (!nestedValue.length)); 
+    default:
+      return true;
+  }
+}
+

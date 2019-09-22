@@ -10,12 +10,22 @@ import PropTypes from 'prop-types';
 import { NavLink, Route } from 'react-router-dom';
 
 export const App = (props) => {
-    const { cityInfo: { one = {}, two = {} } } = props;
-    const { scores: scoresOne = [], images: imagesOne = {}, } = one;
-    const { scores: scoresTwo = [] } = two;
-    const { images: imagesTwo = [] } = two;
-    const cityOneReady = (scoresOne.length > 0) && one.details && imagesOne.images;
-    const cityTwoReady = (scoresTwo.length > 0) && two.details && imagesTwo.images;
+  const { cityInfoReducer } = props;
+
+  const { inFlightScores, inFlightDetails, inFlightImages, details, scores } = cityInfoReducer;
+  const cityNames = details.map(detail => detail.fullName);
+
+  const isReady = !(inFlightScores || inFlightDetails || inFlightImages);
+
+  cityToDisplayMap = {
+
+  }
+    // const { cityInfo: { one = {}, two = {} } } = props;
+    // const { scores: scoresOne = [], images: imagesOne = {}, } = one;
+    // const { scores: scoresTwo = [] } = two;
+    // const { images: imagesTwo = [] } = two;
+    // const cityOneReady = (scoresOne.length > 0) && one.details && imagesOne.images;
+    // const cityTwoReady = (scoresTwo.length > 0) && two.details && imagesTwo.images;
 
     return (
       <div className='App'>
@@ -37,7 +47,7 @@ export const App = (props) => {
                 <div className='city-one'>
                   <CityForm ordinal={0} />
                   {
-                    !cityOneReady && 
+                    !isReady && 
                     <div className='placeholder'>
                       <img 
                         id='circle' 
@@ -47,14 +57,14 @@ export const App = (props) => {
                     </div>
                   }
                   {
-                    (cityOneReady || null) && 
+                    (isReady) && 
                     <City ordinal={0} />
                   }
                 </div>
                 <div className='city-two'>
                   <CityForm ordinal={1} />
                   {
-                    !cityTwoReady && 
+                    !isReady && 
                     <div className='placeholder'>
                       <img 
                         id='circle' 
@@ -63,7 +73,7 @@ export const App = (props) => {
                     </div>
                   }
                   {
-                    (cityTwoReady || null) && 
+                    (isReady) && 
                     <City ordinal={1} />
                   }
                 </div>
@@ -73,9 +83,14 @@ export const App = (props) => {
           )
         }} />
         <Route path='/details/:name' render={({ match }) => {
-          const { name } =match.params;
-          const awaitData = cityOneReady || cityTwoReady; 
-          const cityCheck = awaitData ? one.details.fullName.includes(name) : null;
+          const { name } = match.params;
+          const awaitData = isReady; 
+          const cityCheck = awaitData ?
+          // find index of cityData that has this name from the params, and use that index to pass the correct data to details
+          indexToDisplay = cityData.find(thing => thing.fullName === name
+            
+            
+            one.details.fullName.includes(name) : null;
           const cityProps = cityCheck ? one : two;
           return <Details cityData={cityProps}/>
         }}
@@ -86,7 +101,7 @@ export const App = (props) => {
 }
 
 export const mapStateToProps = state => ({
-  cityInfo: state.cityInfo
+  ...state
 })
 
 export default connect(mapStateToProps)(App);

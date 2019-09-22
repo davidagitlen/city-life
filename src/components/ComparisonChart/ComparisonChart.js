@@ -15,13 +15,13 @@ class ComparisonChart extends Component{
   }
 
   getChartStuff = () => {
-    const { data, cityOneName, cityTwoName } = this.props;
+    const { data, cityNames } = this.props;
     
     const chartData = {
         labels: data.cityOneData.map(datum => datum.name),
         datasets: [
           {
-            label: cityOneName,
+            label: cityNames[0],
             data: data.cityOneData.map(datum => datum.score_out_of_10.toFixed(2)),
             fill: false,
             backgroundColor: data.cityOneData.map(datum => '#2E2EC9'),
@@ -30,7 +30,7 @@ class ComparisonChart extends Component{
           },
           {
             type: 'line',
-            label: cityTwoName,
+            label: cityNames[1],
             data: data.cityTwoData.map(datum => datum.score_out_of_10.toFixed(2)),
             fill: false,
             backgroundColor: data.cityTwoData.map(datum => '#6DECAF'),
@@ -81,7 +81,6 @@ class ComparisonChart extends Component{
 export default ComparisonChart;
 
 ComparisonChart.propTypes = {
-  cityOneName: PropTypes.string,
-  cityTwoName: PropTypes.string,
+  cityNames: PropTypes.array,
   data: PropTypes.object
 }
