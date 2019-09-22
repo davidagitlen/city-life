@@ -10,9 +10,13 @@ import PropTypes from 'prop-types';
 import { NavLink, Route } from 'react-router-dom';
 
 export const App = (props) => {
-    const { cityInfo } = props;
-    const cityOneReady = cityInfo.one.scores.length && cityInfo.one.details && cityInfo.one.images.images;
-    const cityTwoReady = cityInfo.two.scores.length && cityInfo.two.details && cityInfo.two.images.images;
+    const { cityInfo: { one = {}, two = {} } } = props;
+    const { scores: scoresOne = [], images: imagesOne = {}, } = one;
+    const { scores: scoresTwo = [] } = two;
+    const { images: imagesTwo = [] } = two;
+    const cityOneReady = (scoresOne.length > 0) && one.details && imagesOne.images;
+    const cityTwoReady = (scoresTwo.length > 0) && two.details && imagesTwo.images;
+
     return (
       <div className='App'>
         <header className='App-header'>
@@ -48,8 +52,8 @@ export const App = (props) => {
         <Route path='/details/:name' render={({ match }) => {
           const { name } =match.params;
           const awaitData = cityOneReady || cityTwoReady; 
-          const cityCheck = awaitData ?cityInfo.one.details.fullName.includes(name) : null;
-          const cityProps = cityCheck ? cityInfo.one : cityInfo.two;
+          const cityCheck = awaitData ? one.details.fullName.includes(name) : null;
+          const cityProps = cityCheck ? one : two;
           return <Details cityData={cityProps}/>
         }}
         />

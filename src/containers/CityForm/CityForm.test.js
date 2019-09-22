@@ -135,7 +135,7 @@ describe('CityForm', () => {
   });
 
   describe('componentDidMount', () => {
-
+    
     it('should invoke fetchUrbanAreas', () => {
       expect(fetchUrbanAreas).toHaveBeenCalled();
     });
@@ -345,7 +345,7 @@ describe('CityForm', () => {
 
       mappedProps = mapDispatchToProps(mockDispatch)
     });
-    
+
     it('calls dispatch with action object from setCityScores', () => {
       const mockSetCityScoresObject = {
         ordinal: 'one',

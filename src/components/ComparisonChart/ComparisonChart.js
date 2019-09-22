@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
-import Chart from 'chart.js';
 import './ComparisonChart.scss';
 import PropTypes from 'prop-types';
+import { Line } from 'react-chartjs-2';
+
 
 class ComparisonChart extends Component{
-  chartRef = React.createRef();
-
-  componentDidMount() {
-    this.createChart();
+  constructor (props) {
+    super();
+    this.chartReference = {};
   }
 
   componentDidUpdate() {
-    this.createChart();
+    this.chartReference.chartInstance.update();
   }
 
-  createChart = () => {
+  getChartStuff = () => {
     const { data, cityOneName, cityTwoName } = this.props;
-    const currentChartRef = this.chartRef.current.getContext('2d');
-   
-
-    new Chart(currentChartRef, {
-      type: 'line',
-      data: {
+    
+    const chartData = {
         labels: data.cityOneData.map(datum => datum.name),
         datasets: [
           {
@@ -41,9 +37,9 @@ class ComparisonChart extends Component{
             borderColor: data.cityTwoData.map(datum => '#6DECAF'),
             borderWidth: 1.5
           },
-        ]
-      },
-      options: {
+        ],
+      };
+      const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
@@ -63,16 +59,19 @@ class ComparisonChart extends Component{
           }
           ]
         }
-      }
-    });
+      };
+      
+      return { chartData, chartOptions };
   }
 
   render() {
+    const chartStuff = this.getChartStuff();
     return(
         <div className='ComparisonChart'>
-          <canvas
-            id="myChart"
-            ref={this.chartRef}
+          <Line
+            ref={(reference) => this.chartReference = reference}
+            data={chartStuff.chartData}
+            options={chartStuff.chartOptions}
           />
         </div>
     )
