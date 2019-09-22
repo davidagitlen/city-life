@@ -10,16 +10,13 @@ import PropTypes from 'prop-types';
 import { NavLink, Route } from 'react-router-dom';
 
 export const App = (props) => {
-  const { cityInfoReducer } = props;
+  const { cityInfoReducer: cityData } = props;
 
-  const { inFlightScores, inFlightDetails, inFlightImages, details, scores } = cityInfoReducer;
-  const cityNames = details.map(detail => detail.fullName);
+  const { inFlightScores, inFlightDetails, inFlightImages, details, scores } = cityData;
+  // const cityNames = details.map(detail => detail.fullName);
 
   const isReady = !(inFlightScores || inFlightDetails || inFlightImages);
-
-  cityToDisplayMap = {
-
-  }
+  
     // const { cityInfo: { one = {}, two = {} } } = props;
     // const { scores: scoresOne = [], images: imagesOne = {}, } = one;
     // const { scores: scoresTwo = [] } = two;
@@ -78,21 +75,20 @@ export const App = (props) => {
                   }
                 </div>
               </div>
-              <Comparison />
+              {/* <Comparison /> */}
             </>
           )
         }} />
         <Route path='/details/:name' render={({ match }) => {
           const { name } = match.params;
-          const awaitData = isReady; 
-          const cityCheck = awaitData ?
+          if (isReady) {
+            console.log('in the route, baa: ', cityData, name)
+            const indexINeed = cityData.details.findIndex(thing => thing.fullName.split(',').includes(name));
+            return <Details cityData={cityData} index={indexINeed}/>
+          }
+          return null;
           // find index of cityData that has this name from the params, and use that index to pass the correct data to details
-          indexToDisplay = cityData.find(thing => thing.fullName === name
-            
-            
-            one.details.fullName.includes(name) : null;
-          const cityProps = cityCheck ? one : two;
-          return <Details cityData={cityProps}/>
+
         }}
         />
         </main>

@@ -32,9 +32,9 @@ export const formatChartData = (arrayOne, arrayTwo, indexes) => ({
 export const isEmpty = (dataType, dataSet) => {
   switch(dataType) {
     case 'object':
-      return dataSet.map(nestedValue => (!Object.keys(nestedValue).length));
+      return dataSet.map(nestedValue => (!Object.keys(nestedValue).length)).includes(true);
     case 'array':
-      return dataSet.map(nestedValue => (!nestedValue.length)); 
+      return dataSet.map(nestedValue => (!nestedValue.length)).includes(true); 
     default:
       return true;
   }

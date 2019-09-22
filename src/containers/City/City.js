@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 export const City = (props) => {
-  const { ordinal } = props;
-  const { fullName } = props.cityInfo[ordinal].details;
-  const { web } = props.cityInfo[ordinal].images.images;
+  const { cityInfoReducer: cityData, ordinal } = props;
+  console.log('city props: ', props)
+  console.log('ordinal: ', ordinal);
+  const { fullName } = cityData.details[ordinal];
+  const { web } = cityData.images[ordinal].images;
   const linkName = fullName ? fullName.split(',')[0] : null;
   return(
     <div className='City'>
@@ -22,7 +24,7 @@ export const City = (props) => {
 }
 
 export const mapStateToProps = state => ({
-  cityInfo: state.cityInfo
+  ...state
 })
 
 export default connect(mapStateToProps)(City);

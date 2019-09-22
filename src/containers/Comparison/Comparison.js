@@ -9,7 +9,7 @@ export const Comparison = (props) => {
   console.log('~~~~~~~~~~~props we are super stoked to render~~~~', props)
   const cityInfo = props;
   const { inFlightScores, inFlightDetails, inFlightImages, details, scores } = cityInfo;
-  const cityNames = details.map(detail => detail.fullName);
+  // const cityNames = details.map(detail => detail.fullName);
 
   // const { cityInfo: [ one, two ] } = props;
   // console.log('trying to destructure', one, two)
@@ -77,7 +77,7 @@ export const Comparison = (props) => {
             <ComparisonChart 
                 data={chart}
                 key={Math.random(1)}
-                cityNames={cityNames}
+                // cityNames={cityNames}
               />)
          }
     </>
