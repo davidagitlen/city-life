@@ -7,15 +7,19 @@ import PropTypes from 'prop-types';
 
 export const Comparison = (props) => {
   console.log(props)
-  const { cityInfo: { one = {}, two = {} } } = props;
+  const { cityInfo: { one, two } } = props;
   const {
-    scores: scoresOne = [], images: imagesOne = {}, details: detailsOne = {},
+    scores: scoresOne, 
+    images: imagesOne,
+    details: detailsOne,
   } = one;
   const {
-    scores: scoresTwo = [], images: imagesTwo = {}, details: detailsTwo = {},
+    scores: scoresTwo, 
+    images: imagesTwo, 
+    details: detailsTwo,
   } = two;
-  const { fullName: fullNameOne = '' } = detailsOne;
-  const { fullName: fullNameTwo = '' } = detailsTwo;
+  const { fullName: fullNameOne } = detailsOne;
+  const { fullName: fullNameTwo } = detailsTwo;
 
   const cityOneReady = (scoresOne.length > 0) && detailsOne && !!imagesOne.images && (fullNameOne.length > 0);
   const cityTwoReady = (scoresTwo.length > 0) && detailsTwo && !!imagesTwo.images && (fullNameTwo.length > 0);  
@@ -34,20 +38,9 @@ export const Comparison = (props) => {
     infrastructureIndexes: [4, 5, 13]
   };
 
-  const { economicIndexes, healthAndSafetyIndexes, culturalIndexes, infrastructureIndexes } = chartCategoryMap;
+  const chartCategories = Object.keys(chartCategoryMap);
 
-  const thingToMap = Object.keys(chartCategoryMap);
-
-  const chartList = thingToMap.map(thing => formatChartData(cityOneScores, cityTwoScores, chartCategoryMap[thing]));
-
-  // const chartSet = someOtherArray.map(thing => formatChartData(thing));
-  
-  
-  // const economicData = formatChartData(cityOneScores, cityTwoScores, economicIndexes);
-  // const healthAndSafetyData = formatChartData(cityOneScores, cityTwoScores, healthAndSafetyIndexes);
-  // const culturalData = formatChartData(cityOneScores, cityTwoScores, culturalIndexes);
-  // const infrastructureData = formatChartData(cityOneScores, cityTwoScores, infrastructureIndexes);
-
+  const chartList = chartCategories.map(category => formatChartData(cityOneScores, cityTwoScores, chartCategoryMap[category]));
 
   return(
     <div className='Comparison'>
@@ -62,6 +55,7 @@ export const Comparison = (props) => {
             chartList.map(chart =>  
               <ComparisonChart 
                 data={chart}
+                key={Math.random(1)}
                 cityOneName={cityOneName}
                 cityTwoName={cityTwoName}
               />)

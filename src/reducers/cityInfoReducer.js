@@ -1,4 +1,19 @@
-export const cityInfoReducer = ( state={ one:{scores: [], details: {}, images: {}}, two:{scores: [], details: {}, images: {} }}, action) => {
+export const cityInfoReducer = ( state = { 
+  one:{
+    scores: [], 
+    details: {
+      fullName: ''
+    }, 
+    images: {}
+  }, 
+  two:{
+    scores: [], 
+    details: {
+      fullName: ''
+    }, 
+    images: {} 
+  }
+}, action) => {
   switch(action.type) {
     case 'SET_CITY_SCORES' :
       const scoresToUpdate = {...state};
