@@ -44,12 +44,9 @@ export class CityForm extends Component{
   getCityScores = async () => {
     const citySnippet = this.state.city.toLowerCase().replace(/,|\./g, '').replace(/\s/g, '-');
     this.props.requestCityScores(this.props.ordinal);
-    console.log('we\'re tryin to fetch ')
     try {
       const city = await fetchCityScores(`https://api.teleport.org/api/urban_areas/slug:${citySnippet}/`);
-      console.log('first scores response', city);
       const cityScores = city.categories;
-      console.log('so glad we can set city scores now')
       this.props.setCityScores(this.props.ordinal, cityScores);
     } catch ({ message }) {
       this.setState({ error: message });

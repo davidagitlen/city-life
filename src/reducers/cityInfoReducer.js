@@ -1,5 +1,3 @@
-import { isEmpty } from '../util/dataCleaner';
-
 export const cityInfoReducer = ( state = { 
   scores: [[], []],
   details: [ { fullName: '' }, { fullName: '' } ],
@@ -8,7 +6,6 @@ export const cityInfoReducer = ( state = {
   inFlightDetails: [true, true],
   inFlightImages: [true, true],
 }, action ) => {
-  console.log('in the reducer, finally', action)
   switch(action.type) {
     case 'SET_CITY_SCORES':
       const { scores, inFlightScores } = state;

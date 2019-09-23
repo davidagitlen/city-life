@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 
 export const City = (props) => {
   const { cityInfoReducer: cityData, ordinal } = props;
-  console.log('city props: ', props)
-  console.log('ordinal: ', ordinal);
   const { fullName } = cityData.details[ordinal];
   const { web } = cityData.images[ordinal].images;
   const linkName = fullName ? fullName.split(',')[0] : null;

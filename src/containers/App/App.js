@@ -75,7 +75,6 @@ export const App = (props) => {
               const { name } = match.params;
               
               if (isReady) {
-                console.log('cityData as it is ready: ', cityData);
                 const selectedIndex = findSelectedIndex(cityData, name);
 
                 return <Details cityData={cityData} index={selectedIndex}/>

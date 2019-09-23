@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Details = (props) => {
-  console.log('details props yo: ', props);
   const { index, cityData } = props;
   const {
     latitude, longitude, population, fullName, timeZone
