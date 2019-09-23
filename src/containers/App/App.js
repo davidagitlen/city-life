@@ -15,7 +15,7 @@ export const App = (props) => {
     inFlightScores, inFlightDetails, inFlightImages,
     details, scores,
   } = cityData;
-  const isReady = !(inFlightScores || inFlightDetails || inFlightImages);
+  const isReady = !(inFlightScores.includes(true) || inFlightDetails.includes(true) || inFlightImages.includes(true));
   const findSelectedIndex = (dataSet, matchString) => (
     dataSet.details.findIndex(thing => thing.fullName.split(',').includes(matchString)));
   const formSet = [
@@ -51,7 +51,7 @@ export const App = (props) => {
                   <div className={selectedClass}>
                   <CityForm ordinal={ordinal} />
                   {
-                    !isReady ?
+                    inFlightImages[ordinal] ?
                     <div className='placeholder'>
                       <img
                         id='circle'
@@ -65,7 +65,7 @@ export const App = (props) => {
                 ))
                 }
               </div>
-              {/* <Comparison /> */}
+              <Comparison />
             </>
           )
         }} />

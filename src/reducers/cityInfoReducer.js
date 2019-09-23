@@ -4,27 +4,42 @@ export const cityInfoReducer = ( state = {
   scores: [[], []],
   details: [ { fullName: '' }, { fullName: '' } ],
   images: [{}, {}],
-  inFlightScores: true,
-  inFlightDetails: true,
-  inFlightImages: true
+  inFlightScores: [true, true],
+  inFlightDetails: [true, true],
+  inFlightImages: [true, true],
 }, action ) => {
   console.log('in the reducer, finally', action)
   switch(action.type) {
     case 'SET_CITY_SCORES':
-      const { scores } = state;
+      const { scores, inFlightScores } = state;
+      const brandNewInFlightScores = inFlightScores;
+      brandNewInFlightScores[action.ordinal] = false;
       scores[action.ordinal] = action.array;
-      const inFlightScores = isEmpty('array', scores);
-      return { ...state, scores, inFlightScores };
+      return { ...state, scores, inFlightScores: brandNewInFlightScores };
     case 'SET_CITY_DETAILS' :
-      const { details } = {...state};
+      const { details, inFlightDetails } = {...state};
+      const brandNewInFlightDetails = inFlightDetails;
+      brandNewInFlightDetails[action.ordinal] = false;
       details[action.ordinal] = action.details;
-      const inFlightDetails = isEmpty('object', details)
-      return { ...state, details, inFlightDetails };
+      return { ...state, details, inFlightDetails: brandNewInFlightDetails };
     case 'SET_CITY_IMAGES' :
-      const { images } = { ...state };
+      const { images, inFlightImages } = { ...state };
+      const brandNewInFlightImages = inFlightImages;
       images[action.ordinal] = action.images;
-      const inFlightImages = isEmpty('object', images)
-      return { ...state, images, inFlightImages };
+      brandNewInFlightImages[action.ordinal] = false
+      return { ...state, images, inFlightImages: brandNewInFlightImages };
+    case 'REQUEST_CITY_IMAGES':
+      const newInFlightImages = state.inFlightImages;
+      newInFlightImages[action.ordinal] = true;
+      return { ...state, inFlightImages: newInFlightImages };
+    case 'REQUEST_CITY_DETAILS' :
+      const newInFlightDetails = state.inFlightDetails;
+      newInFlightDetails[action.ordinal] = true;
+      return { ...state, inFlightDetails: newInFlightDetails };
+    case 'REQUEST_CITY_SCORES' :
+      const newInFlightScores = state.inFlightScores;
+      newInFlightScores[action.ordinal] = true;
+      return { ...state, inFlightScores: newInFlightScores };
     default :
       return state;
   }
