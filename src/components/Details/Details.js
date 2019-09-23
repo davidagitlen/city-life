@@ -6,8 +6,10 @@ import PropTypes from 'prop-types';
 const Details = (props) => {
   console.log('details props yo: ', props);
   const { index, cityData } = props;
-  const {latitude, longitude, population, fullName, timeZone} = cityData.details[index];
-  const {attribution, images} = cityData.images[index];
+  const {
+    latitude, longitude, population, fullName, timeZone
+  } = cityData.details[index];
+  const { attribution, images } = cityData.images[index];
   const cleanTimeZone = timeZone.replace(/_/g, ' ');
   const mapURL = `https://api.mapbox.com/styles/v1/mapbox/light-v9/static/${longitude},${latitude},6,0,0/350x300?access_token=pk.eyJ1IjoiZGF2aWRhZ2l0bGVuIiwiYSI6ImNrMGs5NTNlcTA0dGkzY3MzdHZ3MTRiZGoifQ.ZtBWtklc66DFIgPC2CI_qg`;
   const titleAttribution = `Photo by ${attribution.photographer}, from ${attribution.site}. Original can be found at ${attribution.source}.`

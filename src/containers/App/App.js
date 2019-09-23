@@ -11,13 +11,18 @@ import { NavLink, Route } from 'react-router-dom';
 
 export const App = (props) => {
   const { cityInfoReducer: cityData } = props;
-
-  const { inFlightScores, inFlightDetails, inFlightImages, details, scores } = cityData;
-  // const cityNames = details.map(detail => detail.fullName);
-
+  const {
+    inFlightScores, inFlightDetails, inFlightImages,
+    details, scores,
+  } = cityData;
   const isReady = !(inFlightScores || inFlightDetails || inFlightImages);
+  const findSelectedIndex = (dataSet, matchString) => (
+    dataSet.details.findIndex(thing => thing.fullName.split(',').includes(matchString)));
+  const formSet = [
+    { ordinal: 0, selectedClass: 'city-one' },
+    { ordinal: 1, selectedClass: 'city-two' }
+  ];
   
-    // const { cityInfo: { one = {}, two = {} } } = props;
     // const { scores: scoresOne = [], images: imagesOne = {}, } = one;
     // const { scores: scoresTwo = [] } = two;
     // const { images: imagesTwo = [] } = two;
@@ -41,55 +46,42 @@ export const App = (props) => {
           return(
             <>
               <div className='forms'>
-                <div className='city-one'>
-                  <CityForm ordinal={0} />
+                {
+                  formSet.map(({ ordinal, selectedClass }) => (
+                  <div className={selectedClass}>
+                  <CityForm ordinal={ordinal} />
                   {
-                    !isReady && 
+                    !isReady ?
                     <div className='placeholder'>
-                      <img 
-                        id='circle' 
-                        src={citySkyline} 
+                      <img
+                        id='circle'
+                        src={citySkyline}
                         alt=''
                       />
-                    </div>
-                  }
-                  {
-                    (isReady) && 
-                    <City ordinal={0} />
+                    </div> :
+                    <City ordinal={ordinal} />
                   }
                 </div>
-                <div className='city-two'>
-                  <CityForm ordinal={1} />
-                  {
-                    !isReady && 
-                    <div className='placeholder'>
-                      <img 
-                        id='circle' 
-                        src={citySkyline} 
-                        alt='' />
-                    </div>
-                  }
-                  {
-                    (isReady) && 
-                    <City ordinal={1} />
-                  }
-                </div>
+                ))
+                }
               </div>
               {/* <Comparison /> */}
             </>
           )
         }} />
-        <Route path='/details/:name' render={({ match }) => {
-          const { name } = match.params;
-          if (isReady) {
-            console.log('in the route, baa: ', cityData, name)
-            const indexINeed = cityData.details.findIndex(thing => thing.fullName.split(',').includes(name));
-            return <Details cityData={cityData} index={indexINeed}/>
-          }
-          return null;
-          // find index of cityData that has this name from the params, and use that index to pass the correct data to details
+        <Route
+          path='/details/:name'
+          render={({ match }) => {
+              const { name } = match.params;
+              
+              if (isReady) {
+                console.log('cityData as it is ready: ', cityData);
+                const selectedIndex = findSelectedIndex(cityData, name);
 
-        }}
+                return <Details cityData={cityData} index={selectedIndex}/>
+              }
+              return null;
+            }}
         />
         </main>
       </div>
