@@ -143,7 +143,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(CityForm);
 
 CityForm.propTypes = {
   cityInfo: PropTypes.object,
-  ordinal: PropTypes.string,
+  ordinal: PropTypes.number,
   setCityDetails: PropTypes.func,
   setCityImages: PropTypes.func,
   setCityScores: PropTypes.func,

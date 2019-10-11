@@ -48,8 +48,11 @@ export const App = (props) => {
               <div className='forms'>
                 {
                   formSet.map(({ ordinal, selectedClass }) => (
-                  <div className={selectedClass}>
-                  <CityForm ordinal={ordinal} />
+                  <div 
+                    className={selectedClass}
+                    key={selectedClass}
+                    >
+                  <CityForm ordinal={ordinal}/>
                   {
                     inFlightImages[ordinal] ?
                     <div className='placeholder'>

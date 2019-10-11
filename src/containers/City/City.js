@@ -30,5 +30,5 @@ export default connect(mapStateToProps)(City);
 City.propTypes = {
   cityInfo: PropTypes.object,
   dispatch: PropTypes.func,
-  ordinal: PropTypes.string
+  ordinal: PropTypes.number
 }
