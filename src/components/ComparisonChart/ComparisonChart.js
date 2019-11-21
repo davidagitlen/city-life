@@ -19,8 +19,8 @@ class ComparisonChart extends Component{
   }
 
   getChartStuff = () => {
-    const { data, cityNames } = this.props;
-    
+    const { data, cityNames, chartIndex } = this.props;
+    const titles = ['Economy', 'Health & Safety', 'Culture', 'Infrastructure'];
     const chartData = {
         labels: data.cityOneData.map(datum => datum.name),
         datasets: this.myChartDataMap.map(({ chart, borderColor, borderWidth }, index) => ({
@@ -52,9 +52,12 @@ class ComparisonChart extends Component{
             }
           }
           ]
+        },
+        title: {
+          display: true,
+          text: titles[chartIndex]
         }
       };
-      
       return { chartData, chartOptions };
   }
 

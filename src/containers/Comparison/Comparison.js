@@ -31,9 +31,10 @@ export const Comparison = (props) => {
         </div> :
         <div className="comparison-chart__container">
           {
-            chartList.map(chart =>
+            chartList.map((chart, i) =>
               <ComparisonChart
                 data={chart}
+                chartIndex={i}
                 key={Math.random(1)}
                 cityNames={cityNames}
               />)
