@@ -93,7 +93,7 @@ export class CityForm extends Component{
 
   render() {
     const ordinal = this.props.ordinal;
-    const cityOrdinal = ordinal === 'one' ? 'First' : 'Second';
+    const cityOrdinal = ordinal === 0 ? 'First' : 'Second';
     const cities = this.state.cities;
     const cityNames = cities.length ? cities.map(city => <option key={city.name} value={city.name} />) : null;
     return(

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ComparisonChart.scss';
 import PropTypes from 'prop-types';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 
 class ComparisonChart extends Component{
@@ -24,7 +24,7 @@ class ComparisonChart extends Component{
     const chartData = {
         labels: data.cityOneData.map(datum => datum.name),
         datasets: this.myChartDataMap.map(({ chart, borderColor, borderWidth }, index) => ({
-            type: 'line',
+            type: 'bar',
             label: cityNames[index],
             data: data[chart].map(datum => datum.score_out_of_10.toFixed(2)),
             fill: false,
@@ -65,7 +65,7 @@ class ComparisonChart extends Component{
     const chartStuff = this.getChartStuff();
     return(
         <div className='ComparisonChart'>
-          <Line
+          <Bar
             ref={(reference) => this.chartReference = reference}
             data={chartStuff.chartData}
             options={chartStuff.chartOptions}
