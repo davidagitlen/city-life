@@ -28,14 +28,17 @@
   }
 
   & button {
+      color: #2E2EC9;
       height: 30px;
       width: 90%;
       border-radius: 10px;
       margin: 10px 0px 10px 0px;
 
     &:hover {
-      font-style: italic;
-      color: #2E2EC9;
+      color: ghostwhite;
+      background-color: #2E2EC9;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
     }
 
   }
