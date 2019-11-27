@@ -41,6 +41,12 @@
       transition: all 0.2s ease-in-out;
     }
 
+    &:focus {
+      color: ghostwhite;
+      background-color: #2E2EC9;
+      transition: all 0.2s ease-in-out;
+    }
+
   }
 
   & p {
