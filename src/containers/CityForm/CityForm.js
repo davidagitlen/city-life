@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CityForm.scss';
 import { bindActionCreators } from 'redux';
 import {
-  setCityScores, setCityDetails, setCityImages,
+  setCityScores, setCityDetails, setCityImages, setCityDescription,
   requestCityScores, requestCityDetails, requestCityImages,
 } from '../../actions';
 import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalData, fetchCityImages } from '../../util/apiCalls';
@@ -47,8 +47,11 @@ export class CityForm extends Component{
     this.props.requestCityScores(this.props.ordinal);
     try {
       const city = await fetchCityScores(`${path}/urban_areas/slug:${citySnippet}/`);
+      console.log('getCityScores', city);
       const cityScores = city.categories;
+      const cityDescription = city.summary;
       this.props.setCityScores(this.props.ordinal, cityScores);
+      this.props.setCityDescription(this.props.ordinal, cityDescription)
     } catch ({ message }) {
       this.setState({ error: message });
     }
@@ -136,6 +139,7 @@ export const mapDispatchToProps = dispatch => bindActionCreators(
     setCityDetails,
     requestCityImages,
     setCityImages,
+    setCityDescription
   },
   dispatch
 );
@@ -148,6 +152,7 @@ CityForm.propTypes = {
   setCityDetails: PropTypes.func,
   setCityImages: PropTypes.func,
   setCityScores: PropTypes.func,
+  setCityDescription: PropTypes.func,
   requestCityDetails: PropTypes.func,
   requestCityImages: PropTypes.func,
   requestCityScores: PropTypes.func

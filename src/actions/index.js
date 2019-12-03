@@ -29,3 +29,8 @@ export const setCityImages = (ordinal, images) => ({
   images
 });
 
+export const setCityDescription = (ordinal, description) => ({
+  type: 'SET_CITY_DESCRIPTION',
+  ordinal,
+  description
+});
