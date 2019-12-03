@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Comparison should match the snapshot if some of the data is missing 1`] = `
+exports[`Comparison should match the snapshot with data passed in correctly 1`] = `
 <div
   className="Comparison"
 >
@@ -11,102 +11,5 @@ exports[`Comparison should match the snapshot if some of the data is missing 1`]
       Select two cities to from the form on the left to see a comparison of their quality of life data.
     </p>
   </div>
-</div>
-`;
-
-exports[`Comparison should match the snapshot with data passed in correctly 1`] = `
-<div
-  className="Comparison"
->
-  <ComparisonChart
-    cityOneName="Denver"
-    cityTwoName="Boulder"
-    data={
-      Object {
-        "cityOneData": Array [
-          Object {
-            "color": "blue",
-            "name": "Score",
-            "score_out_of_10": 10,
-          },
-          undefined,
-          undefined,
-          undefined,
-          undefined,
-          undefined,
-          undefined,
-        ],
-        "cityTwoData": Array [
-          Object {
-            "color": "red",
-            "name": "Score",
-            "score_out_of_10": 10,
-          },
-          undefined,
-          undefined,
-          undefined,
-          undefined,
-          undefined,
-          undefined,
-        ],
-      }
-    }
-  />
-  <ComparisonChart
-    cityOneName="Denver"
-    cityTwoName="Boulder"
-    data={
-      Object {
-        "cityOneData": Array [
-          undefined,
-          undefined,
-          undefined,
-          undefined,
-        ],
-        "cityTwoData": Array [
-          undefined,
-          undefined,
-          undefined,
-          undefined,
-        ],
-      }
-    }
-  />
-  <ComparisonChart
-    cityOneName="Denver"
-    cityTwoName="Boulder"
-    data={
-      Object {
-        "cityOneData": Array [
-          undefined,
-          undefined,
-          undefined,
-        ],
-        "cityTwoData": Array [
-          undefined,
-          undefined,
-          undefined,
-        ],
-      }
-    }
-  />
-  <ComparisonChart
-    cityOneName="Denver"
-    cityTwoName="Boulder"
-    data={
-      Object {
-        "cityOneData": Array [
-          undefined,
-          undefined,
-          undefined,
-        ],
-        "cityTwoData": Array [
-          undefined,
-          undefined,
-          undefined,
-        ],
-      }
-    }
-  />
 </div>
 `;

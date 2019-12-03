@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 
 jest.mock('../../util/apiCalls');
 jest.mock('../../actions');
-;
+
 describe('CityForm', () => {
   let wrapper, mockCityInfo;
 
@@ -96,7 +96,7 @@ describe('CityForm', () => {
     wrapper = shallow(
       <CityForm 
         cityInfo={mockCityInfo}
-        ordinal='one'
+        ordinal={0}
       />
     );
   });
@@ -124,12 +124,11 @@ describe('CityForm', () => {
       const wrapper = shallow(
         <CityForm 
           cityInfo={mockCityInfo}
-          ordinal='one'
+          ordinal={0}
         />, {disableLifecycleMethods: true}
       );
 
       wrapper.instance().handleCitySelection(mockEvent);
-
       expect(wrapper.state()).toEqual(expected);
     });
   });
@@ -175,10 +174,11 @@ describe('CityForm', () => {
       const wrapper = shallow(
         <CityForm 
           cityInfo={mockCityInfo}
-          ordinal='one'
+          ordinal={0}
+          requestCityScores={jest.fn()}
+          requestCityDetails={jest.fn()}
         />
       );
-  
       wrapper.instance().handleCitySelection(mockEvent);
       wrapper.instance().getCityScores();
       expect(fetchCityScores).toHaveBeenCalledWith(`https://api.teleport.org/api/urban_areas/slug:san-francisco-bay-area/`);
@@ -189,20 +189,21 @@ describe('CityForm', () => {
       const wrapper = shallow(
         <CityForm
           cityInfo={mockCityInfo}
-          ordinal='one'
+          ordinal={0}
+          requestCityScores={jest.fn()}
           setCityScores={jest.fn()}
         />
       ); 
       
       await wrapper.instance().getCityScores();
-      expect(wrapper.instance().props.setCityScores).toHaveBeenCalledWith('one', [{ color: 'blue', name: 'Score', score_out_of_10: 10 }]);
+      expect(wrapper.instance().props.setCityScores).toHaveBeenCalledWith(0, [{ color: 'blue', name: 'Score', score_out_of_10: 10 }]);
     });
 
     it.skip('should set error property of state to error message if fetchCityScores is not successful', async () => {
       const wrapper = shallow(
         <CityForm
           cityInfo={mockCityInfo}
-          ordinal='one'
+          ordinal={0}
           setCityScores={jest.fn()}
         />
       );
@@ -214,7 +215,6 @@ describe('CityForm', () => {
       const expected = 'Sorry, it didn\'t work';
 
       await wrapper.instance().getCityScores();
-      console.log(wrapper.instance().state)
       expect(wrapper.instance().state.error).toEqual(expected);
     });
   });
@@ -232,7 +232,8 @@ describe('CityForm', () => {
       const wrapper = shallow(
         <CityForm
           cityInfo={mockCityInfo}
-          ordinal='one'
+          requestCityImages={jest.fn()}
+          ordinal={0}
         />
       );
 
@@ -246,13 +247,14 @@ describe('CityForm', () => {
       const wrapper = shallow(
         <CityForm
           cityInfo={mockCityInfo}
-          ordinal='one'
+          ordinal={0}
+          requestCityImages={jest.fn()}
           setCityImages={jest.fn()}
         />
       );
 
       await wrapper.instance().getCityImages();
-      expect(wrapper.instance().props.setCityImages).toHaveBeenCalledWith('one', { attribution: 'Flickr', images: 'http://blah.com/blah' });
+      expect(wrapper.instance().props.setCityImages).toHaveBeenCalledWith(0, { attribution: 'Flickr', images: 'http://blah.com/blah' });
     });
   });
 
@@ -270,7 +272,7 @@ describe('CityForm', () => {
       const wrapper = shallow(
         <CityForm
           cityInfo={mockCityInfo}
-          ordinal='one'
+          ordinal={0}
         />
       );
 
@@ -288,7 +290,8 @@ describe('CityForm', () => {
       const wrapper = shallow(
         <CityForm
           cityInfo={mockCityInfo}
-          ordinal='one'
+          ordinal={0}
+          requestCityDetails={jest.fn()}
         />
       );
 
@@ -303,7 +306,8 @@ describe('CityForm', () => {
       const wrapper = shallow(
         <CityForm
           cityInfo={mockCityInfo}
-          ordinal='one'
+          ordinal={0}
+          requestCityDetails={jest.fn()}
           setCityDetails={jest.fn()}
         />
       );
@@ -318,15 +322,14 @@ describe('CityForm', () => {
       }
 
       await wrapper.instance().handleAdditionalData();
-      expect(wrapper.instance().props.setCityDetails).toHaveBeenCalledWith('one', expected);
+      expect(wrapper.instance().props.setCityDetails).toHaveBeenCalledWith(0, expected);
     });
   });
 
   describe('mapStateToProps', () => {
     it('should return an object with appropriate data', () => {
       const mockState = {
-        cityInfo: mockCityInfo,
-        unrealData: 'halp me, lord!'
+        cityInfoReducer: mockCityInfo,
       };
       const expected = {
         cityInfo: mockCityInfo,
@@ -348,7 +351,7 @@ describe('CityForm', () => {
 
     it('calls dispatch with action object from setCityScores', () => {
       const mockSetCityScoresObject = {
-        ordinal: 'one',
+        ordinal: 0,
         array: [{score: 1}, {score: 2}]
       };
       const actionToDispatch = setCityScores(mockSetCityScoresObject);
@@ -360,7 +363,7 @@ describe('CityForm', () => {
 
     it('calls dispatch with action object from setCityDetails', () => {
       const mockSetCityDetailsObject = {
-        ordinal: 'one',
+        ordinal: 0,
         details: {name: 'Help', location: 'me'}
       }
       const actionToDispatch = setCityDetails(mockSetCityDetailsObject);
@@ -372,7 +375,7 @@ describe('CityForm', () => {
 
     it('calls dispatch with action object from setCityImages', () => {
       const mockSetCityImagesObject = {
-        ordinal: 'one',
+        ordinal: 0,
         images: {web: 'http://blah.com/blah'}
       }
       const actionToDispatch = setCityImages(mockSetCityImagesObject);

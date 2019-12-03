@@ -10,13 +10,13 @@ exports[`CityForm should match the snapshot with data passed in correctly 1`] = 
        City
     </p>
     <label
-      htmlFor="city-one"
+      htmlFor="city-0"
     >
       City Name
     </label>
     <input
       autoComplete="off"
-      id="city-one"
+      id="city-0"
       list="city-selection"
       name="city"
       onChange={[Function]}

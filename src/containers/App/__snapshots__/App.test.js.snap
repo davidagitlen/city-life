@@ -1,3 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should match the snapshot with data passed in correctly 1`] = `undefined`;
+exports[`App should match the snapshot with data passed in correctly 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <div
+      className="site-name"
+    >
+      <h1>
+        City
+        <span>
+          Life
+        </span>
+      </h1>
+    </div>
+    <div
+      className="nav-links"
+    >
+      <NavLink
+        className="nav"
+        to="/"
+      >
+        Compare Cities
+      </NavLink>
+      <NavLink
+        className="nav"
+        to="/past-comparisons"
+      >
+        History
+      </NavLink>
+      <NavLink
+        className="nav"
+        to="/world-map"
+      >
+        Map
+      </NavLink>
+    </div>
+  </header>
+  <main>
+    <Route
+      exact={true}
+      path="/"
+      render={[Function]}
+    />
+    <Route
+      path="/details/:name"
+      render={[Function]}
+    />
+  </main>
+</div>
+`;

@@ -6,17 +6,17 @@ exports[`City should match the snapshot with data passed in correctly 1`] = `
 >
   <Link
     className="link"
-    to="details/Dorvord"
+    to="details/Denver"
   >
     <div>
       <img
         alt=""
         id="circle"
-        src="http://blah.com"
+        src="http://blurg.com/web"
       />
     </div>
     <p>
-      Dorvord, Gordletan
+      Denver, Colorado!
     </p>
   </Link>
 </div>

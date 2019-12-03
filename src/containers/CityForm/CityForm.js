@@ -9,6 +9,7 @@ import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalDa
 import { formatCityName, formatAdditionalCityData } from '../../util/dataCleaner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+const path = process.env.REACT_APP_URL;
 
 export class CityForm extends Component{
   constructor(){
@@ -45,7 +46,7 @@ export class CityForm extends Component{
     const citySnippet = this.state.city.toLowerCase().replace(/,|\./g, '').replace(/\s/g, '-');
     this.props.requestCityScores(this.props.ordinal);
     try {
-      const city = await fetchCityScores(`https://api.teleport.org/api/urban_areas/slug:${citySnippet}/`);
+      const city = await fetchCityScores(`${path}/urban_areas/slug:${citySnippet}/`);
       const cityScores = city.categories;
       this.props.setCityScores(this.props.ordinal, cityScores);
     } catch ({ message }) {
@@ -57,7 +58,7 @@ export class CityForm extends Component{
     const citySnippet = this.state.city.toLowerCase().replace(/,|\./g, '').replace(/\s/g, '-');
     this.props.requestCityImages(this.props.ordinal);
     try {
-      const city = await fetchCityImages(`https://api.teleport.org/api/urban_areas/slug:${citySnippet}/`);
+      const city = await fetchCityImages(`${path}/urban_areas/slug:${citySnippet}/`);
       const cityImages = {
         attribution: city.photos[0].attribution,
         images : city.photos[0].image
@@ -124,7 +125,7 @@ export class CityForm extends Component{
 }
 
 export const mapStateToProps = state => ({
-  cityInfo: state.cityInfo
+  cityInfo: state.cityInfoReducer
 });
 
 export const mapDispatchToProps = dispatch => bindActionCreators(
@@ -136,7 +137,7 @@ export const mapDispatchToProps = dispatch => bindActionCreators(
     requestCityImages,
     setCityImages,
   },
-  dispatch,
+  dispatch
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityForm);

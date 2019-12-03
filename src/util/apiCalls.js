@@ -1,5 +1,7 @@
+const path = process.env.REACT_APP_URL;
+
 export const fetchUrbanAreas = async () => {
-  const url = 'https://api.teleport.org/api/urban_areas/';
+  const url = `${path}/urban_areas/`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error('There was a problem retrieving city data!');
@@ -29,7 +31,7 @@ export const fetchCityImages = async (partialUrl) => {
 }
 
 export const findAdditionalData = async (city, originalName) => {
-  const url = `https://api.teleport.org/api/cities/?search=${city}`;
+  const url = `${path}/cities/?search=${city}`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error('There was a problem retrieving that city\'s additional data!');
