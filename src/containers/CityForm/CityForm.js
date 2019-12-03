@@ -125,7 +125,7 @@ export class CityForm extends Component{
 }
 
 export const mapStateToProps = state => ({
-  cityInfo: state.cityInfo
+  cityInfo: state.cityInfoReducer
 });
 
 export const mapDispatchToProps = dispatch => bindActionCreators(
@@ -137,7 +137,7 @@ export const mapDispatchToProps = dispatch => bindActionCreators(
     requestCityImages,
     setCityImages,
   },
-  dispatch,
+  dispatch
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityForm);

@@ -43,12 +43,15 @@ describe('App', () => {
           }
         },
         scores: [{ color: 'red', name: 'Score', score_out_of_10: 10 }]
-      }
+      },
+      inFlightScores: [true, true],
+      inFlightDetails: [true, true],
+      inFlightImages: [true, true]
     };
 
     wrapper = shallow(
       <App 
-        cityInfo={mockCityInfo}
+        cityInfoReducer={mockCityInfo}
       />)
   });
 
@@ -61,8 +64,7 @@ describe('App', () => {
     it('should return an object with appropriate data', () => {
       
       const mockState = {
-        cityInfo: mockCityInfo,
-        unrealData: 'boo!'
+        cityInfo: mockCityInfo
       };
 
       const expected = {

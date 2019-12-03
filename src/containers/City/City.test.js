@@ -5,34 +5,51 @@ import { shallow } from 'enzyme';
 describe('City', () => {
 
   it('should match the snapshot with data passed in correctly', () => {
-    const mockData = {
-      ordinal: 'one',
-      cityInfo : {
-        one: {
-          details: {
-            fullName: 'Dorvord, Gordletan'
-          },
+    const mockCityInfo = {
+      details: [
+        {
+          population: 1,
+          latitude: 10,
+          longitude: 10,
+          fullName: 'Denver, Colorado!',
+          timeZone: 'Denver!'
+        },
+        {
+          population: 1,
+          latitude: 10,
+          longitude: 10,
+          fullName: 'Boulder, Colorado!',
+          timeZone: 'Denver!'
+        }
+      ],
+      images: [
+        {
+          attribution: {},
           images: {
-            images: {
-              web: 'http://blah.com'
-            }
+            mobile: 'http://blurg.com',
+            web: 'http://blurg.com/web'
           }
         },
-        two: {
-          details: {
-            fullName: 'Brindanda, DelBla;bey'
-          },
+        {
+          attribution: {},
           images: {
-            images: {
-              web: 'http://blah.com'
-            }
+            mobile: 'http://blurg.com',
+            web: 'http://blurg.com/web'
           }
         }
-      }
+      ],
+      scores: [
+        [{ color: 'blue', name: 'Score', score_out_of_10: 10 }],
+        [{ color: 'green', name: 'Score', score_out_of_10: 9 }]
+      ],
+      inFlightScores: [true, true],
+      inFlightDetails: [true, true],
+      inFlightImages: [true, true]
     };
     const wrapper = shallow(
       <City 
-        {...mockData}
+        cityInfoReducer={mockCityInfo}
+        ordinal={0}
       />
     );
 
@@ -81,12 +98,11 @@ describe('City', () => {
       };
 
       const mockState = {
-        cityInfo: mockCityInfo,
-        unrealData: 'blergh!'
+        cityInfoReducer: mockCityInfo
       };
 
       const expected = {
-        cityInfo: mockCityInfo
+        cityInfoReducer: mockCityInfo
       };
 
       const mappedProps = mapStateToProps(mockState);
