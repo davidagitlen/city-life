@@ -22,6 +22,10 @@ describe('Details', () => {
           fullName: 'Boulder, Colorado!',
           timeZone: 'Denver!'
         }],
+        description: [
+          { summary: 'A city!'},
+          { summary: 'Another city!'}
+        ],
         images: [{
           attribution: {},
           images: {

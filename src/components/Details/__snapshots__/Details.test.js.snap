@@ -23,6 +23,7 @@ exports[`Details should match the snapshot with data passed in correctly 1`] = `
     className="Details-description"
   >
     <div>
+      A city!
       <p>
         Denver, Colorado!
       </p>
