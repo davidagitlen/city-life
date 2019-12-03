@@ -1,4 +1,4 @@
-# CityLife
+# CityLife [![Build Status](https://travis-ci.org/davidagitlen/city-life.svg?branch=master)](https://travis-ci.org/davidagitlen/city-life)
 
 CityLife allows a user to select two cities from a database of over 260 international urban areas and compare their quality of life data. 
 Cities are compared on seventeen individual metrics ranging from housing availability and average commute to environmental quality and leisure/culture. Comparisons are displayed in four charts which group cities' scores into related areas: economy, health and safety, education and culture, and infrastructure. Displays in the form are clickable links to pages with expanded images, specific data, and a map of the city and surrounding area.
@@ -26,4 +26,4 @@ Run the test suite with `npm test`.
 * Webpack
 * Testing with Jest & Enzyme
 
-![Screenshot](./src/images/screenshot.png)
+![Screenshot](https://i.imgur.com/yela5K5.png)
