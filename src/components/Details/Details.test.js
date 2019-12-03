@@ -9,26 +9,40 @@ describe('Details', () => {
   beforeEach(() => {
 
     mockProps = {
-        details: {
+        details: [{
           population: 1,
           latitude: 10,
           longitude: 10,
           fullName: 'Denver, Colorado!',
           timeZone: 'Denver!'
-        },
-        images: {
+        }, {
+          population: 2,
+          latitude: 10,
+          longitude: 10,
+          fullName: 'Boulder, Colorado!',
+          timeZone: 'Denver!'
+        }],
+        images: [{
           attribution: {},
           images: {
             mobile: 'http://blurg.com',
             web: 'http://blurg.com/web'
-          }
-        },
+            }
+          },
+          {
+          attribution: {},
+          images: {
+            mobile: 'http://blurg.com',
+            web: 'http://blurg.com/web'
+            }
+          }],
         scores: [{ color: 'blue', name: 'Score', score_out_of_10: 10 }]
       };
 
     wrapper = shallow(
       <Details 
         cityData={mockProps}
+        index={0}
       />
     );
   });
