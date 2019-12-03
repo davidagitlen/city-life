@@ -22,12 +22,6 @@ export const App = (props) => {
     { ordinal: 0, selectedClass: 'city-one' },
     { ordinal: 1, selectedClass: 'city-two' }
   ];
-  
-    // const { scores: scoresOne = [], images: imagesOne = {}, } = one;
-    // const { scores: scoresTwo = [] } = two;
-    // const { images: imagesTwo = [] } = two;
-    // const cityOneReady = (scoresOne.length > 0) && one.details && imagesOne.images;
-    // const cityTwoReady = (scoresTwo.length > 0) && two.details && imagesTwo.images;
 
     return (
       <div className='App'>
