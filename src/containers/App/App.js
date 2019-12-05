@@ -22,72 +22,66 @@ export const App = (props) => {
     { ordinal: 0, selectedClass: 'city-one' },
     { ordinal: 1, selectedClass: 'city-two' }
   ];
-  
-    // const { scores: scoresOne = [], images: imagesOne = {}, } = one;
-    // const { scores: scoresTwo = [] } = two;
-    // const { images: imagesTwo = [] } = two;
-    // const cityOneReady = (scoresOne.length > 0) && one.details && imagesOne.images;
-    // const cityTwoReady = (scoresTwo.length > 0) && two.details && imagesTwo.images;
 
-    return (
-      <div className='App'>
-        <header className='App-header'>
-          <div className='site-name'>
-            <h1>City<span>Life</span></h1>
-          </div>
-          <div className='nav-links'>
-            <NavLink to='/' className='nav'>Compare Cities</NavLink>
-            <NavLink to='/past-comparisons' className='nav'>History</NavLink>
-            <NavLink to='/world-map' className='nav'>Map</NavLink>
-          </div>
-        </header>
-        <main>
-        <Route exact path='/' render={() => {
-          return(
-            <>
-              <div className='forms'>
+  return (
+    <div className='App'>
+      <header className='App-header'>
+        <div className='site-name'>
+          <h1>City<span>Life</span></h1>
+        </div>
+        <div className='nav-links'>
+          <NavLink to='/' className='nav'>Compare Cities</NavLink>
+          <NavLink to='/past-comparisons' className='nav'>History</NavLink>
+          <NavLink to='/world-map' className='nav'>Map</NavLink>
+        </div>
+      </header>
+      <main>
+      <Route exact path='/' render={() => {
+        return(
+          <>
+            <div className='forms'>
+              {
+                formSet.map(({ ordinal, selectedClass }) => (
+                <div 
+                  className={selectedClass}
+                  key={selectedClass}
+                  >
+                <CityForm ordinal={ordinal}/>
                 {
-                  formSet.map(({ ordinal, selectedClass }) => (
-                  <div 
-                    className={selectedClass}
-                    key={selectedClass}
-                    >
-                  <CityForm ordinal={ordinal}/>
-                  {
-                    inFlightImages[ordinal] ?
-                    <div className='placeholder'>
-                      <img
-                        id='circle'
-                        src={citySkyline}
-                        alt=''
-                      />
-                    </div> :
-                    <City ordinal={ordinal} />
-                  }
-                </div>
-                ))
+                  inFlightImages[ordinal] ?
+                  <div className='placeholder'>
+                    <img
+                      id='circle'
+                      src={citySkyline}
+                      alt=''
+                    />
+                  </div> :
+                  <City ordinal={ordinal} />
                 }
               </div>
-              <Comparison />
-            </>
-          )
-        }} />
-        <Route
-          path='/details/:name'
-          render={({ match }) => {
-              const { name } = match.params;
-              
-              if (isReady) {
-                const selectedIndex = findSelectedIndex(cityData, name);
-
-                return <Details cityData={cityData} index={selectedIndex}/>
+              ))
               }
-              return null;
-            }}
-        />
-        </main>
-      </div>
-    );
+            </div>
+            <Comparison />
+          </>
+        )
+      }} />
+      <Route
+        path='/details/:name'
+        render={({ match }) => {
+            const { name } = match.params;
+            
+            if (isReady) {
+              const selectedIndex = findSelectedIndex(cityData, name);
+
+              return <Details cityData={cityData} index={selectedIndex}/>
+            }
+            return null;
+          }}
+      />
+      </main>
+    </div>
+  );
 }
 
 export const mapStateToProps = state => ({

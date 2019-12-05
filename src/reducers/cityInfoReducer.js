@@ -1,6 +1,7 @@
 export const cityInfoReducer = ( state = { 
   scores: [[], []],
   details: [ { fullName: '' }, { fullName: '' } ],
+  description: [ { summary: ''}, { summary: ''}],
   images: [{}, {}],
   inFlightScores: [true, true],
   inFlightDetails: [true, true],
@@ -25,6 +26,10 @@ export const cityInfoReducer = ( state = {
       images[action.ordinal] = action.images;
       brandNewInFlightImages[action.ordinal] = false
       return { ...state, images, inFlightImages: brandNewInFlightImages };
+    case 'SET_CITY_DESCRIPTION' :
+      const { description } = { ...state};
+      description[action.ordinal].summary = action.description;
+      return { ...state, description};
     case 'REQUEST_CITY_IMAGES':
       const newInFlightImages = state.inFlightImages;
       newInFlightImages[action.ordinal] = true;
