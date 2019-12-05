@@ -39,4 +39,3 @@ export const isEmpty = (dataType, dataSet) => {
       return true;
   }
 }
-
