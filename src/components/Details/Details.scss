@@ -4,11 +4,6 @@
   width: 78%;
   margin: 10px auto;
   padding: 10px;
-
-  & img {
-    height: 100%;
-    width: 100%;
-  }
 }
 
 .Details-description {
@@ -24,4 +19,17 @@
     font-size: 28px;
     margin: 15px 0px 15px 0px;
   }
+}
+
+.Details-image {
+  -webkit-clip-path: inset(0px 10px);
+  clip-path: inset(0px 10px);
+}
+
+.description-left {
+  width: 100%;
+}
+
+.description-right {
+  width: 50%;
 }
