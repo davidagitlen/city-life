@@ -56,7 +56,7 @@ main {
 .placeholder {
   position: relative;
   height: 280px;
-  width: 100%;
+  width: 90%;
   background-color: ghostwhite;
 
    & img {
@@ -79,6 +79,11 @@ main {
 
   &:hover {
     color: #6DECAF;
+  }
+
+  &:focus {
+    color: #6DECAF;
+    outline: none;
   }
 }
 
