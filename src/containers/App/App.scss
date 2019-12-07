@@ -77,12 +77,12 @@ main {
   color: snow;
   text-decoration: none;
   font-size: 1em;
-  transition: font-size .2s ease-in-out;
+  transition: font-size .3s ease-in-out;
 
   &:hover {
     color: #6DECAF;
-    font-size: 1.15em;
-    transition: font-size .2s ease-in-out;
+    font-size: 1.2em;
+    transition: font-size .3s ease-in-out;
   }
 
   &:focus {
