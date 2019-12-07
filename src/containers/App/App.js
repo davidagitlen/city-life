@@ -30,9 +30,15 @@ export const App = (props) => {
           <h1>City<span>Life</span></h1>
         </div>
         <div className='nav-links'>
-          <NavLink to='/' className='nav'>Compare Cities</NavLink>
-          <NavLink to='/past-comparisons' className='nav'>History</NavLink>
-          <NavLink to='/world-map' className='nav'>Map</NavLink>
+          <div>
+            <NavLink to='/' className='nav'>Compare Cities</NavLink>
+          </div>
+          <div>
+            <NavLink to='/past-comparisons' className='nav'>History</NavLink>
+          </div>
+          <div>
+            <NavLink to='/world-map' className='nav'>Map</NavLink>
+          </div>
         </div>
       </header>
       <main>
