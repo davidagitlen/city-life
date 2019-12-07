@@ -20,24 +20,30 @@ exports[`App should match the snapshot with data passed in correctly 1`] = `
     <div
       className="nav-links"
     >
-      <NavLink
-        className="nav"
-        to="/"
-      >
-        Compare Cities
-      </NavLink>
-      <NavLink
-        className="nav"
-        to="/past-comparisons"
-      >
-        History
-      </NavLink>
-      <NavLink
-        className="nav"
-        to="/world-map"
-      >
-        Map
-      </NavLink>
+      <div>
+        <NavLink
+          className="nav"
+          to="/"
+        >
+          Compare Cities
+        </NavLink>
+      </div>
+      <div>
+        <NavLink
+          className="nav"
+          to="/past-comparisons"
+        >
+          History
+        </NavLink>
+      </div>
+      <div>
+        <NavLink
+          className="nav"
+          to="/world-map"
+        >
+          Map
+        </NavLink>
+      </div>
     </div>
   </header>
   <main>
