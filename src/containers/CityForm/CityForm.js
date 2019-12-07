@@ -118,7 +118,10 @@ export class CityForm extends Component{
           <datalist id='city-selection'>
             {cityNames}
           </datalist>
-          <button type='submit' disabled={!this.state.city} onClick={this.handleSubmitCity}>
+          <button 
+            type='submit' 
+            disabled={!this.state.city} 
+            onClick={this.handleSubmitCity}>
             Select City
           </button>
         </form>
