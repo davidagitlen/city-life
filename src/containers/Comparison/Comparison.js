@@ -26,7 +26,7 @@ export const Comparison = (props) => {
         !isReady ?
         <div className='instructions'>
           <p>
-            Select two cities to from the form on the left to see a comparison of their quality of life data.
+            Select two cities from the form on the left to see a comparison of their quality of life data.
           </p>
         </div> :
         <div className="comparison-chart__container">

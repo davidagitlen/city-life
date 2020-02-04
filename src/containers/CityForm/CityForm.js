@@ -2,10 +2,20 @@ import React, { Component } from 'react';
 import './CityForm.scss';
 import { bindActionCreators } from 'redux';
 import {
-  setCityScores, setCityDetails, setCityImages, setCityDescription,
-  requestCityScores, requestCityDetails, requestCityImages,
+  setCityScores, 
+  setCityDetails, 
+  setCityImages, 
+  setCityDescription,
+  requestCityScores, 
+  requestCityDetails, 
+  requestCityImages,
 } from '../../actions';
-import { fetchUrbanAreas, fetchCityScores, findAdditionalData, fetchAdditionalData, fetchCityImages } from '../../util/apiCalls';
+import { 
+  fetchUrbanAreas, 
+  fetchCityScores, 
+  findAdditionalData, 
+  fetchAdditionalData, 
+  fetchCityImages } from '../../util/apiCalls';
 import { formatCityName, formatAdditionalCityData } from '../../util/dataCleaner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

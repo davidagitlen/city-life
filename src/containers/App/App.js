@@ -12,8 +12,9 @@ import { NavLink, Route } from 'react-router-dom';
 export const App = (props) => {
   const { cityInfoReducer: cityData } = props;
   const {
-    inFlightScores, inFlightDetails, inFlightImages,
-    details, scores,
+    inFlightScores, 
+    inFlightDetails, 
+    inFlightImages
   } = cityData;
   const isReady = !(inFlightScores.includes(true) || inFlightDetails.includes(true) || inFlightImages.includes(true));
   const findSelectedIndex = (dataSet, matchString) => (
@@ -76,10 +77,8 @@ export const App = (props) => {
         path='/details/:name'
         render={({ match }) => {
             const { name } = match.params;
-            
             if (isReady) {
               const selectedIndex = findSelectedIndex(cityData, name);
-
               return <Details cityData={cityData} index={selectedIndex}/>
             }
             return null;

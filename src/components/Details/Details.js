@@ -8,8 +8,12 @@ import PropTypes from 'prop-types';
 const Details = (props) => {
   const { index, cityData } = props;
   const {
-    latitude, longitude, population, fullName, timeZone
-  } = cityData.details[index];
+    latitude, 
+    longitude, 
+    population, 
+    fullName, 
+    timeZone
+    } = cityData.details[index];
   const { attribution, images } = cityData.images[index];
   const { summary } = cityData.description[index];
   const cleanTimeZone = timeZone.replace(/_/g, ' ');
@@ -22,7 +26,10 @@ const Details = (props) => {
     <div className='Details'>
       <Link to={`/`} className='back-btn'>◀ back</Link>
       <div className='Details-image'>
-        <img src={images.web} alt={`${fullName}`} title={titleAttribution} />
+        <img 
+          src={images.web} 
+          alt={`${fullName}`} 
+          title={titleAttribution} />
       </div>
       <div className='Details-description'>
         <div className='description-left'>
