@@ -8,7 +8,7 @@ exports[`Comparison should match the snapshot with data passed in correctly 1`] 
     className="instructions"
   >
     <p>
-      Select two cities to from the form on the left to see a comparison of their quality of life data.
+      Select two cities from the form on the left to see a comparison of their quality of life data.
     </p>
   </div>
 </div>
