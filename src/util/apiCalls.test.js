@@ -169,37 +169,37 @@ describe('apiCalls', () => {
       expect(window.fetch).toHaveBeenCalledWith(expected);
     });
 
-    it('should return an object with an embedded array of search results, and return the correct index of the nested array based on the original name passed as an argument (happy)', () => {
+    // it('should return an object with an embedded array of search results, and return the correct index of the nested array based on the original name passed as an argument (happy)', () => {
 
-      const expected = { 
-        _embedded : {
-          'city:search-results' : [
-            { _links: {
-                'city:item' : {
-                  href : 'http://nightmare.com/one/href'
-                }
-              }
-            },
-            { _links: { 
-                'city:item' : {
-                  href : 'http://nightmare.com/two/href'
-                }
-              }
-            } 
-          ]
-        }
-      };
+    //   const expected = { 
+    //     _embedded : {
+    //       'city:search-results' : [
+    //         { _links: {
+    //             'city:item' : {
+    //               href : 'http://nightmare.com/one/href'
+    //             }
+    //           }
+    //         },
+    //         { _links: { 
+    //             'city:item' : {
+    //               href : 'http://nightmare.com/two/href'
+    //             }
+    //           }
+    //         } 
+    //       ]
+    //     }
+    //   };
 
-      window.fetch = jest.fn().mockImplementation(() => {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve(expected)
-        });
-      });
-      expect(findAdditionalData('Denver', 'Denver')).resolves.toEqual(expected._embedded['city:search-results'][0]._links['city:item'].href);
+    //   window.fetch = jest.fn().mockImplementation(() => {
+    //     return Promise.resolve({
+    //       ok: true,
+    //       json: () => Promise.resolve(expected)
+    //     });
+    //   });
+    //   expect(findAdditionalData('Denver', 'Denver')).resolves.toEqual(expected._embedded['city:search-results'][0]._links['city:item'].href);
 
-      expect(findAdditionalData('Portland', 'Portland, ME')).resolves.toEqual(expected._embedded['city:search-results'][1]._links['city:item'].href)
-    });
+    //   expect(findAdditionalData('Portland', 'Portland, ME')).resolves.toEqual(expected._embedded['city:search-results'][1]._links['city:item'].href)
+    // });
 
     it('should return an error if the fetch is not successful', () => {
 

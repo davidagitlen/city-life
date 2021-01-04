@@ -57,7 +57,6 @@ export class CityForm extends Component{
     this.props.requestCityScores(this.props.ordinal);
     try {
       const city = await fetchCityScores(`${path}/urban_areas/slug:${citySnippet}/`);
-      console.log('getCityScores', city);
       const cityScores = city.categories;
       const cityDescription = city.summary;
       this.props.setCityScores(this.props.ordinal, cityScores);
