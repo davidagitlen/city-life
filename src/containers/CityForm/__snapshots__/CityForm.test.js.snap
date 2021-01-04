@@ -20,7 +20,7 @@ exports[`CityForm should match the snapshot with data passed in correctly 1`] = 
       list="city-selection"
       name="city"
       onChange={[Function]}
-      placeholder="Select a City to Compare"
+      placeholder="Enter a City Name"
       type="text"
       value=""
     />

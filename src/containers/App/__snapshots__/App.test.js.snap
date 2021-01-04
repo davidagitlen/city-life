@@ -56,6 +56,14 @@ exports[`App should match the snapshot with data passed in correctly 1`] = `
       path="/details/:name"
       render={[Function]}
     />
+    <Route
+      path="/past-comparisons"
+      render={[Function]}
+    />
+    <Route
+      path="/world-map"
+      render={[Function]}
+    />
   </main>
 </div>
 `;
