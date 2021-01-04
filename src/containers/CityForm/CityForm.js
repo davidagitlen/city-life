@@ -121,7 +121,7 @@ export class CityForm extends Component{
             id={`city-${ordinal}`}
             type='text' 
             value={this.state.city}
-            placeholder='Select a City to Compare'
+            placeholder='Enter a City Name'
             autoComplete='off'
             onChange={this.handleCitySelection}
             />

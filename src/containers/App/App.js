@@ -84,6 +84,28 @@ export const App = (props) => {
             return null;
           }}
       />
+      <Route
+        path='/past-comparisons'
+        render={() => (
+          <div className='under-construction'>
+            <p>
+              Under Construction! Please check back later.
+            </p>
+          </div>
+          )
+        }
+      />
+      <Route
+        path='/world-map'
+          render={() => (
+            <div className='under-construction'>
+              <p>
+                Under Construction! Please check back later.
+              </p>
+            </div>
+          )
+        }
+      />
       </main>
     </div>
   );
